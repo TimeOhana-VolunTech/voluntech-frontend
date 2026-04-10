@@ -64,7 +64,9 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "voluntech-frontend:build:production"
+              "buildTarget": "voluntech-frontend:build:production",
+              "prerender": false,
+              "ssr": false
             },
             "development": {
               "buildTarget": "voluntech-frontend:build:development"
