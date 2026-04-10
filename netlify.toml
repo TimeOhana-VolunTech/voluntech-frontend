@@ -9,9 +9,3 @@
 
 [build.environment]
   NODE_VERSION = "20"
-
-# Isso desativa o plugin que está causando o erro de 'routes'
-[[plugins]]
-  package = "@netlify/angular-runtime"
-  [plugins.inputs]
-    disable_ssr = true
