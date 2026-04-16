@@ -1,0 +1,81 @@
+<div class="container-cadastro">
+  <h2 class="titulo">Cadastro de ONG</h2>
+
+  <form [formGroup]="formOng" (ngSubmit)="cadastrar()" class="formulario">
+
+    <div class="campo">
+      <label>Nome da ONG</label>
+      <input type="text" formControlName="nome" placeholder="Digite o nome da organização"
+            [class.invalid]="formOng.get('nome')?.invalid && formOng.get('nome')?.touched"/>
+
+      <div class="error-container" >
+        @if (formOng.get('nome')?.touched) {
+          <small class="error-msg" *ngIf="formOng.get('nome')?.errors?.['required']">O nome é obrigatório.</small>
+          <small class="error-msg" *ngIf="formOng.get('nome')?.errors?.['minlength']">Mínimo de 3 caracteres.</small>
+          <small class="error-msg" *ngIf="formOng.get('nome')?.errors?.['maxlength']">Máximo de 100 caracteres.</small>
+          <small class="error-msg" *ngIf="formOng.get('nome')?.errors?.['pattern']">O nome não pode ser vazio ou conter apenas espaços.</small>
+        }
+      </div>
+    </div>
+
+    <div class="campo">
+      <label>Razão Social</label>
+      <input formControlName="razaoSocial" placeholder="Qual intuíto da ONG"
+            [class.invalid]="formOng.get('razaoSocial')?.invalid && formOng.get('razaoSocial')?.touched"/>
+
+      <div class="error-container">
+        @if (formOng.get('razaoSocial')?.touched) {
+          <small class="error-msg" *ngIf="formOng.get('razaoSocial')?.errors?.['required']">A razão social é obrigatório.</small>
+        }
+      </div>
+    </div>
+
+    <div class="campo">
+      <label>E-mail</label>
+      <input type="email" formControlName="email" placeholder="exemplo@email.com"
+            [class.invalid]="formOng.get('email')?.invalid && formOng.get('email')?.touched">
+
+      <div class="error-container">
+        @if (formOng.get('email')?.touched) {
+          <small class="error-msg" *ngIf="formOng.get('email')?.errors?.['required']">O e-mail é obrigatório.</small>
+          <small class="error-msg" *ngIf="formOng.get('email')?.errors?.['email']">E-mail inválido.</small>
+          <small class="error-msg" *ngIf="formOng.get('email')?.errors?.['pattern']">O email não pode conter espaços.</small>
+        }
+      </div>
+    </div>
+
+    <div class="campo">
+      <label>CNPJ</label>
+      <input type="text" formControlName="cnpj" appCnpjMask placeholder="00.000.000/0000-00"
+            [class.invalid]="formOng.get('cnpj')?.invalid && formOng.get('cnpj')?.touched">
+
+      <div class="error-container">
+        @if (formOng.get('cnpj')?.touched) {
+          <small class="error-msg" *ngIf="formOng.get('cnpj')?.errors?.['required']">O CNPJ é obrigatório.</small>
+          <small class="error-msg" *ngIf="formOng.get('cnpj')?.errors?.['pattern']">O CNPJ deve estar completo.</small>
+        }
+      </div>
+    </div>
+
+    <div class="campo">
+      <label>Senha</label>
+      <input type="password" formControlName="senha" placeholder="******"
+              [class.invalid]="formOng.get('senha')?.invalid && formOng.get('senha')?.touched">
+
+      <div class="error-container">
+        @if (formOng.get('senha')?.touched) {
+          <small class="error-msg" *ngIf="formOng.get('senha')?.errors?.['required']">A senha é obrigatória.</small>
+          <small class="error-msg" *ngIf="formOng.get('senha')?.errors?.['minlength']">A senha deve ter no mínimo 6 caracteres.</small>
+          <small class="error-msg" *ngIf="formOng.get('senha')?.errors?.['maxlength']">A senha deve ter no maximo 12 caracteres.</small>
+          <small class="error-msg" *ngIf="formOng.get('senha')?.errors?.['pattern']">A senha não pode conter espaços.</small>
+        }
+      </div>
+    </div>
+
+    <button type="submit" [disabled]="formOng.invalid">
+      Finalizar Cadastro
+    </button>
+
+    <button type="button" class="btn-voltar" (click)="voltar()">Voltar</button>
+  </form>
+</div>
