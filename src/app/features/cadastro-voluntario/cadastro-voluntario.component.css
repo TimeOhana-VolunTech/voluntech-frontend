@@ -1,19 +1,31 @@
 /* Container principal que centraliza o card */
 .container {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  min-height: 80vh;
-  padding: 20px;
+  height: 100vh;
+  overflow: hidden;
+  padding: 40px 20px;
   font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  background-color: #f3f4f6;
+  box-sizing: border-box;
+}
+
+/* Título VolunTech no topo */
+.main-title {
+  font-size: 1rem;
+  color: #1a1a1a;
+  text-align: center;
+  margin-bottom: 20px;
 }
 
 /* Card de cadastro */
 .card {
   background: #ffffff;
   max-width: 450px;
-  width: 100%;
-  padding: 30px;
+  width: 90%;
+  padding: 25px;
   border-radius: 12px;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
 }
@@ -66,7 +78,7 @@
 }
 
 .error-container {
-  min-height: 10px;
+  min-height: 18px;
   margin-top: 2px;
   display: flex;
   flex-direction: column;
@@ -120,4 +132,47 @@ button[type="submit"]:disabled {
 
 .btn-voltar:hover {
   background-color: #f9fafb;
+}
+
+/* --- RESPONSIVIDADE (MEDIA QUERIES) --- */
+
+@media (max-width: 480px) {
+  .container {
+    justify-content: flex-start; /* Alinha no topo */
+    padding-top: 20px;
+    overflow-y: auto; /* Permite rolar APENAS dentro do container se o celular for pequeno */
+    height: 100vh;
+  }
+
+  .main-title {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .card {
+    padding: 20px;
+  }
+
+  .card h2 {
+    font-size: 1.25rem;
+  }
+
+  .card p {
+    font-size: 0.813rem;
+    margin-bottom: 20px;
+  }
+
+  .form-group label {
+    font-size: 0.813rem;
+  }
+
+  .form-group input {
+    padding: 10px;
+    font-size: 0.875rem;
+  }
+
+  button[type="submit"] {
+    padding: 12px;
+    font-size: 0.938rem;
+  }
 }
