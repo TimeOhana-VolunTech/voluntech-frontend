@@ -1,55 +1,78 @@
-/* Container centralizado */
-.container-cadastro {
-  max-width: 450px;
-  margin: 50px auto;
-  padding: 30px;
-  background-color: #ffffff;
-  border-radius: 12px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+  padding: 40px 20px;
+  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  background-color: #f3f4f6;
+  box-sizing: border-box;
 }
 
-.titulo {
-  color: #333;
-  margin-bottom: 25px;
+/* Título VolunTech no topo */
+.main-title {
+  font-size: 1rem;
+  color: #1a1a1a;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Card de cadastro */
+.card {
+  background: #ffffff;
+  max-width: 450px;
+  width: 90%;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+.card h2 {
+  margin-top: 0;
+  color: #1a1a1a;
+  font-size: 24px;
   text-align: center;
 }
 
+.card p {
+  color: #666;
+  text-align: center;
+  margin-bottom: 25px;
+  font-size: 14px;
+}
+
 /* Estrutura do formulário */
-.formulario {
+.form-group {
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  margin-bottom: 15px;
 }
 
-.campo {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-}
-
-.campo label {
+.form-group label {
   font-size: 14px;
   font-weight: 600;
-  color: #555;
+  color: #444;
+  margin-bottom: 6px;
 }
 
-.campo input {
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 6px;
-  font-size: 16px;
-  transition: border-color 0.3s;
+.form-group input {
+  padding: 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 15px;
+  transition: all 0.2s ease-in-out;
 }
 
-.campo input:focus {
+.form-group input:focus {
   outline: none;
-  border-color: #3b82f6;
-  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
 }
 
 /* Borda vermelha quando o campo está inválido e foi focado */
-.campo input.invalid {
+.form-group input.invalid {
   border-color: #dc2626;
   background-color: #fffafb;
 }
@@ -67,13 +90,6 @@
   font-size: 12px;
   line-height: 1; /* Evita que o espaçamento entre linhas aumente o container */
   margin: 0;
-}
-
-/* Layout de duas colunas */
-.linha-dupla {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 15px;
 }
 
 /* Botão de ação principal */
@@ -102,15 +118,62 @@ button[type="submit"]:disabled {
 
 .btn-voltar {
   width: 100%;
-  padding: 10px;
+  padding: 12px;
   background: transparent;
   color: #666;
-  border: 1px solid #ccc;
-  border-radius: 6px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
   cursor: pointer;
   font-size: 14px;
+  margin-top: 10px;
+  transition: background-color 0.2s;
 }
 
 .btn-voltar:hover {
-  background-color: #f9f9f9;
+  background-color: #f9fafb;
 }
+
+
+/* --- RESPONSIVIDADE (MEDIA QUERIES) --- */
+
+@media (max-width: 480px) {
+  .container {
+    justify-content: flex-start; /* Alinha no topo */
+    padding-top: 20px;
+    overflow-y: auto; /* Permite rolar APENAS dentro do container se o celular for pequeno */
+    height: 100vh;
+  }
+
+  .main-title {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .card {
+    padding: 20px;
+  }
+
+  .card h2 {
+    font-size: 1.25rem;
+  }
+
+  .card p {
+    font-size: 0.813rem;
+    margin-bottom: 20px;
+  }
+
+  .form-group label {
+    font-size: 0.813rem;
+  }
+
+  .form-group input {
+    padding: 10px;
+    font-size: 0.875rem;
+  }
+
+  button[type="submit"] {
+    padding: 12px;
+    font-size: 0.938rem;
+  }
+}
+
