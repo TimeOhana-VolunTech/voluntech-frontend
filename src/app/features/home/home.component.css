@@ -3,15 +3,18 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 80vh; /* Alterado para min-height para não cortar em telas baixas */
+  height: 100vh;
+  width: 100vw;
+  overflow-y: auto;
   padding: 20px;
   font-family: sans-serif;
   text-align: center;
   color: #333;
+  box-sizing: border-box;
 }
 
 h1 {
-  font-size: 2.5rem;
+  font-size: 2rem;
   margin-bottom: 0.5rem;
 }
 
@@ -79,8 +82,11 @@ button:hover {
 /* Celulares Médios e Pequenos */
 @media (max-width: 640px) {
   .home-container {
-    height: auto;
-    padding-top: 50px;
+    /* No mobile, usamos justify-content: flex-start para o conteúdo
+       começar do topo e não ficar cortado em cima */
+    justify-content: flex-start;
+    padding-top: 40px;
+    padding-bottom: 40px; /* Margem extra no fim para o scroll não ficar colado */
   }
 
   h1 {
@@ -97,10 +103,3 @@ button:hover {
   }
 }
 
-/* Ajuste para telas muito curtas na vertical */
-@media (max-height: 600px) {
-  .home-container {
-    height: auto;
-    padding: 40px 20px;
-  }
-}
