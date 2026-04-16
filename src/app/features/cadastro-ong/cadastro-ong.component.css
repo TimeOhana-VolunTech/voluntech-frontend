@@ -1,0 +1,116 @@
+/* Container centralizado */
+.container-cadastro {
+  max-width: 450px;
+  margin: 50px auto;
+  padding: 30px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.titulo {
+  color: #333;
+  margin-bottom: 25px;
+  text-align: center;
+}
+
+/* Estrutura do formulário */
+.formulario {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.campo {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.campo label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #555;
+}
+
+.campo input {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 16px;
+  transition: border-color 0.3s;
+}
+
+.campo input:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+}
+
+/* Borda vermelha quando o campo está inválido e foi focado */
+.campo input.invalid {
+  border-color: #dc2626;
+  background-color: #fffafb;
+}
+
+.error-container {
+  min-height: 10px;
+  margin-top: 2px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.error-msg {
+  color: #dc2626;
+  font-size: 12px;
+  line-height: 1; /* Evita que o espaçamento entre linhas aumente o container */
+  margin: 0;
+}
+
+/* Layout de duas colunas */
+.linha-dupla {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+/* Botão de ação principal */
+button[type="submit"] {
+  width: 100%;
+  padding: 14px;
+  background-color: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  margin-top: 10px;
+}
+
+button[type="submit"]:hover:not(:disabled) {
+  background-color: #1d4ed8;
+}
+
+button[type="submit"]:disabled {
+  background-color: #9ca3af;
+  cursor: not-allowed;
+}
+
+.btn-voltar {
+  width: 100%;
+  padding: 10px;
+  background: transparent;
+  color: #666;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.btn-voltar:hover {
+  background-color: #f9f9f9;
+}

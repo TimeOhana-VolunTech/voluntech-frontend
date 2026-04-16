@@ -1,0 +1,123 @@
+/* Container principal que centraliza o card */
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+  padding: 20px;
+  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* Card de cadastro */
+.card {
+  background: #ffffff;
+  max-width: 450px;
+  width: 100%;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+.card h2 {
+  margin-top: 0;
+  color: #1a1a1a;
+  font-size: 24px;
+  text-align: center;
+}
+
+.card p {
+  color: #666;
+  text-align: center;
+  margin-bottom: 25px;
+  font-size: 14px;
+}
+
+/* Estrutura dos campos (empilhados verticalmente) */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #444;
+  margin-bottom: 6px;
+}
+
+.form-group input {
+  padding: 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 15px;
+  transition: all 0.2s ease-in-out;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.form-group input.invalid {
+  border-color: #dc2626;
+  background-color: #fffafb;
+}
+
+.error-container {
+  min-height: 10px;
+  margin-top: 2px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.error-msg {
+  color: #dc2626;
+  font-size: 12px;
+  line-height: 1; /* Evita que o espaçamento entre linhas aumente o container */
+  margin: 0;
+}
+
+/* Botão de ação principal */
+button[type="submit"] {
+  width: 100%;
+  padding: 14px;
+  background-color: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  margin-top: 10px;
+}
+
+button[type="submit"]:hover:not(:disabled) {
+  background-color: #1d4ed8;
+}
+
+button[type="submit"]:disabled {
+  background-color: #9ca3af;
+  cursor: not-allowed;
+}
+
+/* Botão voltar seguindo o estilo da ONG */
+.btn-voltar {
+  width: 100%;
+  padding: 12px;
+  background: transparent;
+  color: #666;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  margin-top: 10px;
+  transition: background-color 0.2s;
+}
+
+.btn-voltar:hover {
+  background-color: #f9fafb;
+}

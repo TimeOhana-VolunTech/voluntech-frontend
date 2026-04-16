@@ -1,0 +1,74 @@
+<div class="container">
+  <div class="card">
+    <h2>Cadastre-se como Voluntário</h2>
+    <p>Preencha os dados abaixo para começar a ajudar.</p>
+
+    <form [formGroup]="formVoluntario" (ngSubmit)="cadastrar()">
+
+      <div class="form-group">
+        <label>Nome Completo</label>
+        <input type="text" formControlName="nome" placeholder="Ex: João Silva"
+               [class.invalid]="formVoluntario.get('nome')?.invalid && formVoluntario.get('nome')?.touched">
+
+        <div class="error-container">
+          @if (formVoluntario.get('nome')?.touched) {
+            <small class="error-msg" *ngIf="formVoluntario.get('nome')?.errors?.['required']">O nome é obrigatório.</small>
+            <small class="error-msg" *ngIf="formVoluntario.get('nome')?.errors?.['minlength']">Mínimo de 3 caracteres.</small>
+            <small class="error-msg" *ngIf="formVoluntario.get('nome')?.errors?.['maxlength']">Máximo de 100 caracteres.</small>
+            <small class="error-msg" *ngIf="formVoluntario.get('nome')?.errors?.['pattern']">Nome inválido.</small>
+          }
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>E-mail</label>
+        <input type="email" formControlName="email" placeholder="email@exemplo.com"
+               [class.invalid]="formVoluntario.get('email')?.invalid && formVoluntario.get('email')?.touched">
+
+        <div class="error-container">
+          @if (formVoluntario.get('email')?.touched) {
+            <small class="error-msg" *ngIf="formVoluntario.get('email')?.errors?.['required']">O e-mail é obrigatório.</small>
+            <small class="error-msg" *ngIf="formVoluntario.get('email')?.errors?.['email'] || formVoluntario.get('email')?.errors?.['pattern']">E-mail inválido.</small>
+            <small class="error-msg" *ngIf="formVoluntario.get('email')?.errors?.['pattern']">O email não pode conter espaços.</small>
+          }
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>CPF</label>
+        <input type="text" formControlName="cpf" appCpfMask placeholder="000.000.000-00"
+               [class.invalid]="formVoluntario.get('cpf')?.invalid && formVoluntario.get('cpf')?.touched">
+
+        <div class="error-container">
+          @if (formVoluntario.get('cpf')?.touched) {
+            <small class="error-msg" *ngIf="formVoluntario.get('cpf')?.errors?.['required']">O CPF é obrigatório.</small>
+            <small class="error-msg" *ngIf="formVoluntario.get('cpf')?.errors?.['minlength']">O CPF deve estar completo.</small>
+          }
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Senha</label>
+        <input type="password" formControlName="senha" placeholder="******"
+               [class.invalid]="formVoluntario.get('senha')?.invalid && formVoluntario.get('senha')?.touched">
+
+        <div class="error-container">
+          @if (formVoluntario.get('senha')?.touched) {
+            <small class="error-msg" *ngIf="formVoluntario.get('senha')?.errors?.['required']">A senha é obrigatória.</small>
+            <small class="error-msg" *ngIf="formVoluntario.get('senha')?.errors?.['minlength']">Mínimo 6 caracteres.</small>
+            <small class="error-msg" *ngIf="formVoluntario.get('senha')?.errors?.['maxlength']">A senha deve ter no maximo 12 caracteres.</small>
+            <small class="error-msg" *ngIf="formVoluntario.get('senha')?.errors?.['pattern']">A senha não pode conter espaços.</small>
+          }
+        </div>
+      </div>
+
+      <button type="submit" [disabled]="formVoluntario.invalid">
+        Finalizar Cadastro
+      </button>
+    </form>
+
+    <button type="button" class="btn-voltar" (click)="voltar()">
+      Voltar
+    </button>
+  </div>
+</div>
