@@ -1,4 +1,3 @@
-/* Container principal que centraliza o card */
 .container {
   display: flex;
   flex-direction: column;
@@ -12,7 +11,6 @@
   box-sizing: border-box;
 }
 
-/* Título VolunTech no topo */
 .main-title {
   font-size: 1rem;
   color: #1a1a1a;
@@ -20,42 +18,40 @@
   margin-bottom: 20px;
 }
 
-/* Card de cadastro */
 .card {
   background: #ffffff;
-  max-width: 450px;
-  width: 90%;
-  padding: 25px;
-  border-radius: 12px;
+  max-width: 400px;
+  width: 92%;
+  padding: 30px;
+  border-radius: 16px;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
 }
 
 .card h2 {
-  margin-top: 0;
-  color: #1a1a1a;
+  margin: 0 0 5px 0;
   font-size: 24px;
   text-align: center;
 }
 
 .card p {
   color: #666;
-  text-align: center;
-  margin-bottom: 25px;
   font-size: 14px;
+  text-align: center;
+  margin-bottom: 20px;
 }
 
-/* Estrutura dos campos (empilhados verticalmente) */
 .form-group {
   display: flex;
   flex-direction: column;
-  margin-bottom: 15px;
+  margin-bottom: 12px;
 }
 
 .form-group label {
   font-size: 14px;
   font-weight: 600;
+  margin-bottom: 5px;
   color: #444;
-  margin-bottom: 6px;
 }
 
 .form-group input {
@@ -72,13 +68,14 @@
   box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
 }
 
+/* Borda vermelha quando o campo está inválido e foi focado */
 .form-group input.invalid {
   border-color: #dc2626;
   background-color: #fffafb;
 }
 
 .error-container {
-  min-height: 18px;
+  min-height: 15px;
   margin-top: 2px;
   display: flex;
   flex-direction: column;
@@ -92,21 +89,21 @@
   margin: 0;
 }
 
-/* Container para alinhar input e ícone */
+
+/* Container do input de senha */
 .password-wrapper {
   position: relative;
   display: flex;
   align-items: center;
-  width: 100%;
 }
 
+/* Faz o input ocupar todo o espaço e dar um respiro no final para o ícone */
 .password-wrapper input {
   width: 100%;
-  padding-right: 45px !important;
-  box-sizing: border-box;
+  padding-right: 45px; /* Espaço para o ícone não ficar em cima do texto */
 }
 
-/* Estilo do ícone do olho */
+/* Posicionamento do ícone do olho */
 .toggle-icon {
   position: absolute;
   right: 15px;
@@ -129,13 +126,12 @@
   padding-right: 40px; /* Garante que o texto da senha não encoste no ícone */
 }
 
-/* Mantém a borda vermelha no wrapper quando inválido */
+/* Garante que o input invalid mantenha a borda vermelha mesmo dentro da wrapper */
 .password-wrapper input.invalid {
   border-color: #dc2626;
-  background-color: #fffafb;
 }
 
-/* Botão de ação principal */
+
 button[type="submit"] {
   width: 100%;
   padding: 14px;
@@ -146,8 +142,8 @@ button[type="submit"] {
   font-size: 16px;
   font-weight: 600;
   cursor: pointer;
-  transition: background-color 0.2s;
   margin-top: 10px;
+  transition: background-color 0.2s;
 }
 
 button[type="submit"]:hover:not(:disabled) {
@@ -159,63 +155,26 @@ button[type="submit"]:disabled {
   cursor: not-allowed;
 }
 
-/* Botão voltar seguindo o estilo da ONG */
-.btn-voltar {
-  width: 100%;
-  padding: 12px;
-  background: transparent;
-  color: #666;
-  border: 1px solid #d1d5db;
-  border-radius: 8px;
+.footer-links {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.footer-links p {
+  font-size: 13px;
+}
+
+.footer-links a {
+  color: #2563eb;
   cursor: pointer;
-  font-size: 14px;
-  margin-top: 10px;
-  transition: background-color 0.2s;
+  font-weight: 600;
+  text-decoration: underline;
 }
 
-.btn-voltar:hover {
-  background-color: #f9fafb;
-}
-
-/* --- RESPONSIVIDADE (MEDIA QUERIES) --- */
-
+/* Responsividade */
 @media (max-width: 480px) {
   .container {
-    justify-content: flex-start; /* Alinha no topo */
-    padding-top: 20px;
-    overflow-y: auto; /* Permite rolar APENAS dentro do container se o celular for pequeno */
-    height: 100vh;
-  }
-
-  .main-title {
-    font-size: 1rem;
-    margin-bottom: 0.5rem;
-  }
-
-  .card {
-    padding: 20px;
-  }
-
-  .card h2 {
-    font-size: 1.25rem;
-  }
-
-  .card p {
-    font-size: 0.813rem;
-    margin-bottom: 20px;
-  }
-
-  .form-group label {
-    font-size: 0.813rem;
-  }
-
-  .form-group input {
-    padding: 10px;
-    font-size: 0.875rem;
-  }
-
-  button[type="submit"] {
-    padding: 12px;
-    font-size: 0.938rem;
+    justify-content: flex-start;
+    overflow-y: auto;
   }
 }

@@ -77,6 +77,27 @@ button:hover {
   background-color: #2563eb;
 }
 
+.login-footer {
+  margin-top: 40px;
+  padding-bottom: 20px;
+  font-size: 1rem;
+  color: #666;
+}
+
+.login-footer a {
+  color: #3b82f6;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.login-footer a:hover {
+  color: #2563eb;
+  text-decoration: underline;
+}
+
+
 /* --- Media Queries para Responsividade --- */
 
 /* Celulares Médios e Pequenos */
@@ -100,6 +121,10 @@ button:hover {
   .card {
     width: 100%; /* Card ocupa a largura quase toda no mobile */
     padding: 1.5rem;
+  }
+
+  .login-footer {
+    margin-top: 30px;
   }
 }
 

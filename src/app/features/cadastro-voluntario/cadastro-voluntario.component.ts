@@ -16,6 +16,7 @@ import Swal from 'sweetalert2';
 export class CadastroVoluntarioComponent {
 
   formVoluntario!: FormGroup;
+  isSenhaVisivel: boolean = false;
 
   private router = inject(Router);
   private fb = inject(FormBuilder);
@@ -90,6 +91,10 @@ export class CadastroVoluntarioComponent {
 
   voltar() {
     this.router.navigate(['/']);
+  }
+
+  toggleSenha() {
+    this.isSenhaVisivel = !this.isSenhaVisivel;
   }
 
 }

@@ -16,6 +16,7 @@ import Swal from 'sweetalert2';
 export class CadastroOngComponent {
 
   formOng!: FormGroup; // Define o grupo do formulário
+  isSenhaVisivel: boolean = false;
 
   private router = inject(Router);
   private fb = inject(FormBuilder);
@@ -96,5 +97,9 @@ export class CadastroOngComponent {
 
   voltar() {
     this.router.navigate(['/']);
+  }
+
+  toggleSenha() {
+    this.isSenhaVisivel = !this.isSenhaVisivel;
   }
 }

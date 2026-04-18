@@ -18,4 +18,8 @@ export class HomeComponent {
   navegarParaVoluntario() {
     this.router.navigate(['/cadastro-voluntario']);
   }
+
+  navegarParaLogin() {
+    this.router.navigate(['/login']);
+  }
 }
