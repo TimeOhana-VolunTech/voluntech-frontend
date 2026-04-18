@@ -92,6 +92,49 @@
   margin: 0;
 }
 
+/* Container para alinhar input e ícone */
+.password-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.password-wrapper input {
+  width: 100%;
+  padding-right: 45px !important;
+  box-sizing: border-box;
+}
+
+/* Estilo do ícone do olho */
+.toggle-icon {
+  position: absolute;
+  right: 15px;
+  cursor: pointer;
+  color: #6b7280;
+  font-size: 18px;
+  user-select: none; /* Impede que o usuário selecione o emoji como texto */
+  transition: opacity 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.toggle-icon:hover {
+  color: #2563eb;
+}
+
+.password-wrapper input {
+  width: 100%;
+  padding-right: 40px; /* Garante que o texto da senha não encoste no ícone */
+}
+
+/* Mantém a borda vermelha no wrapper quando inválido */
+.password-wrapper input.invalid {
+  border-color: #dc2626;
+  background-color: #fffafb;
+}
+
 /* Botão de ação principal */
 button[type="submit"] {
   width: 100%;

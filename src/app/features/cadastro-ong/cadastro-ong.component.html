@@ -66,8 +66,15 @@
 
       <div class="form-group">
         <label>Senha</label>
-        <input type="password" formControlName="senha" placeholder="******"
+
+        <div class="password-wrapper">
+          <input [type]="isSenhaVisivel ? 'text' : 'password'" formControlName="senha" placeholder="******"
                 [class.invalid]="formOng.get('senha')?.invalid && formOng.get('senha')?.touched">
+
+          <span class="toggle-icon" (click)="toggleSenha()">
+            <i [class]="isSenhaVisivel ? 'fa-solid fa-eye-slash' : 'fa-solid fa-eye'"></i>
+          </span>
+        </div>
 
         <div class="error-container">
           @if (formOng.get('senha')?.touched) {

@@ -1,0 +1,54 @@
+<div class="container">
+
+  <div class="main-title">
+    <h1 >VolunTech</h1>
+  </div>
+
+  <div class="card">
+    <h2>Login</h2>
+    <p>Bem-vindo de volta! Entre com seus dados.</p>
+
+    <form [formGroup]="loginForm" (ngSubmit)="logar()">
+
+      <div class="form-group">
+        <label>E-mail</label>
+        <input type="email" formControlName="email" placeholder="exemplo@email.com"
+               [class.invalid]="loginForm.get('email')?.invalid && loginForm.get('email')?.touched">
+
+        <div class="error-container">
+          @if (loginForm.get('email')?.touched) {
+            <small class="error-msg" *ngIf="loginForm.get('email')?.errors?.['required']">O e-mail é obrigatório.</small>
+            <small class="error-msg" *ngIf="loginForm.get('email')?.errors?.['email']">E-mail inválido.</small>
+          }
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Senha</label>
+        <div class="password-wrapper">
+          <input [type]="isSenhaVisivel ? 'text' : 'password'" formControlName="senha" placeholder="******"
+               [class.invalid]="loginForm.get('senha')?.invalid && loginForm.get('senha')?.touched">
+
+          <span class="toggle-icon" (click)="toggleSenha()">
+            <i [class]="isSenhaVisivel ? 'fa-solid fa-eye-slash' : 'fa-solid fa-eye'"></i>
+          </span>
+        </div>
+
+        <div class="error-container">
+          @if (loginForm.get('senha')?.touched) {
+            <small class="error-msg" *ngIf="loginForm.get('senha')?.errors?.['required']">A senha é obrigatória.</small>
+            <small class="error-msg" *ngIf="loginForm.get('senha')?.errors?.['minlength']">A senha deve ter no mínimo 6 caracteres.</small>
+            <small class="error-msg" *ngIf="loginForm.get('senha')?.errors?.['maxlength']">A senha deve ter no maximo 12 caracteres.</small>
+            <small class="error-msg" *ngIf="loginForm.get('senha')?.errors?.['pattern']">A senha não pode conter espaços.</small>
+          }
+        </div>
+      </div>
+
+      <button type="submit" [disabled]="loginForm.invalid">Entrar</button>
+    </form>
+
+    <div class="footer-links">
+      <p>Não tem uma conta? <a (click)="irParaHome()">Cadastre-se</a></p>
+    </div>
+  </div>
+</div>
