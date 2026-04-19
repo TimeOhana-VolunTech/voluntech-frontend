@@ -54,13 +54,13 @@ export class CadastroVoluntarioComponent {
       next: (voluntarioCadastrado) => {
         Swal.fire({
           title: 'Bem-vindo(a)!',
-          text: 'Seu cadastro como voluntário foi realizado com sucesso.',
+          text: 'Voluntário cadastrado! Agora você pode fazer login para acessar o painel.',
           icon: 'success',
           confirmButtonColor: '#2563eb',
-          confirmButtonText: 'Começar a ajudar',
+          confirmButtonText: 'Fazer Login',
         }).then(() => {
           this.formVoluntario.reset();
-          this.router.navigate(['/']);
+          this.router.navigate(['/login'], { queryParams: { email: dadosParaEnvio.email }});
         });
       },
       error: (err) => {

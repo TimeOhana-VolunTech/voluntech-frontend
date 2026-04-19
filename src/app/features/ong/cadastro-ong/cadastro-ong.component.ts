@@ -57,14 +57,14 @@ export class CadastroOngComponent {
       next: (ongCadastrada) => {
         Swal.fire({
           title: 'Sucesso!',
-          text: 'ONG cadastrada com sucesso no Voluntech.',
+          text: 'ONG cadastrada! Agora você pode fazer login para gerenciar seus projetos.',
           icon: 'success',
           confirmButtonColor: '#2563eb', // Cor azul que estamos usando
-          confirmButtonText: 'Ir para o painel',
+          confirmButtonText: 'Fazer Login',
         }).then(() => {
           this.formOng.reset();
           // Redireciona para o painel ou home
-          this.router.navigate(['/']);
+          this.router.navigate(['/login'], { queryParams: { email: dadosParaEnvio.email }});
         });
       },
       error: (err) => {
