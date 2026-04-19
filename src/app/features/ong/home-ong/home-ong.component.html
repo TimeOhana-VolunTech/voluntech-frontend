@@ -1,0 +1,42 @@
+<div class="dashboard-container">
+  <app-header></app-header>
+
+  <main class="content">
+    <div class="welcome-section">
+      <div class="welcome-text">
+        <h1>Olá, {{ nomeUsuario }}!</h1>
+        <p>Gerencie seus projetos e acompanhe o impacto da sua ONG.</p>
+      </div>
+      <button class="btn-novo-projeto" (click)="irParaNovoProjeto()">
+        + Novo Projeto
+      </button>
+    </div>
+
+    <section class="projetos-lista">
+      <h2>Meus Projetos Cadastrados</h2>
+
+      <div class="cards-grid" *ngIf="projetos.length > 0; else emptyState">
+        <div class="card" *ngFor="let p of projetos" (click)="abrirDetalhes(p)">
+          <div class="card-header">
+            <h3>{{ p.titulo }}</h3>
+            <span class="status-badge">{{ p.status }}</span>
+          </div>
+          <p>{{ p.descricao }}</p>
+          <div class="card-footer">
+            <span>📅 Prazo: {{ p.prazo | date:'dd/MM/yyyy' }}</span>
+            <span>📍 {{ p.modalidade }}</span>
+          </div>
+        </div>
+
+        <app-projeto-modal *ngIf="projetoSelecionado" [projeto]="projetoSelecionado" (close)="fecharModal()">
+        </app-projeto-modal>
+      </div>
+
+      <ng-template #emptyState>
+        <div class="empty-msg">
+          <p>Você ainda não possui projetos cadastrados. Que tal criar o primeiro?</p>
+        </div>
+      </ng-template>
+    </section>
+  </main>
+</div>

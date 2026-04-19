@@ -25,6 +25,13 @@ export class LoginComponent {
   }
 
   logar() {
+
+    if (this.loginForm.invalid) {
+      // Se o formulário estiver inválido, marca todos os campos para mostrar o erro
+      this.loginForm.markAllAsTouched();
+      return; // Para a execução aqui
+    }
+
     if (this.loginForm.valid) {
       this.authService.login(this.loginForm.value).subscribe({
         next: (user) => {

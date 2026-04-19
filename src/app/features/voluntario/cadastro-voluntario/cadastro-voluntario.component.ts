@@ -1,9 +1,9 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, Validators, ReactiveFormsModule, FormGroup } from '@angular/forms';
-import { VoluntarioService } from '../../core/services/voluntario.service';
+import { VoluntarioService } from '../../../core/services/voluntario.service';
 import { Router } from '@angular/router';
-import { CpfMaskDirective } from '../../shared/directives/cpf-mask.directive';
+import { CpfMaskDirective } from '../../../shared/directives/cpf-mask.directive';
 import Swal from 'sweetalert2';
 
 @Component({

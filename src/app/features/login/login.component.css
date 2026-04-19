@@ -69,7 +69,7 @@
 }
 
 /* Borda vermelha quando o campo está inválido e foi focado */
-.form-group input.invalid {
+.form-group input.invalid, select.invalid {
   border-color: #dc2626;
   background-color: #fffafb;
 }
