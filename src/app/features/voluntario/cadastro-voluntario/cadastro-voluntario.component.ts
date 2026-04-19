@@ -1,9 +1,9 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, Validators, ReactiveFormsModule, FormGroup } from '@angular/forms';
-import { VoluntarioService } from '../../core/services/voluntario.service';
+import { VoluntarioService } from '../../../core/services/voluntario.service';
 import { Router } from '@angular/router';
-import { CpfMaskDirective } from '../../shared/directives/cpf-mask.directive';
+import { CpfMaskDirective } from '../../../shared/directives/cpf-mask.directive';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -54,13 +54,13 @@ export class CadastroVoluntarioComponent {
       next: (voluntarioCadastrado) => {
         Swal.fire({
           title: 'Bem-vindo(a)!',
-          text: 'Seu cadastro como voluntário foi realizado com sucesso.',
+          text: 'Voluntário cadastrado! Agora você pode fazer login para acessar o painel.',
           icon: 'success',
           confirmButtonColor: '#2563eb',
-          confirmButtonText: 'Começar a ajudar',
+          confirmButtonText: 'Fazer Login',
         }).then(() => {
           this.formVoluntario.reset();
-          this.router.navigate(['/']);
+          this.router.navigate(['/login'], { queryParams: { email: dadosParaEnvio.email }});
         });
       },
       error: (err) => {

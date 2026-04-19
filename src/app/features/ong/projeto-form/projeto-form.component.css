@@ -1,0 +1,128 @@
+.dashboard-container {
+  min-height: 100vh;
+  background-color: #f4f7f6; /* Mantém o fundo padrão do sistema */
+  width: 100%;
+  font-family: 'Segoe UI', Roboto, sans-serif;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  padding: 40px 20px;
+}
+
+.form-projeto {
+  background: #ffffff;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.05);
+  width: 100%;
+  max-width: 650px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.form-header {
+  display: flex;
+  align-items: center;
+  position: relative;
+  margin-bottom: 30px;
+}
+
+.btn-voltar {
+  position: absolute;
+  left: 0;
+  background: none;
+  border: none;
+  color: #666;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 8px;
+  transition: color 0.2s;
+}
+
+.btn-voltar:hover {
+  color: #2e7d32;
+}
+
+h2 {
+  color: #333;
+  margin: 0 auto;
+  text-align: center;
+  font-size: 1.8rem;
+}
+
+.form-group { margin-bottom: 20px; display: flex; flex-direction: column; }
+
+label { font-weight: 600; margin-bottom: 8px; color: #444; }
+
+input, textarea, select {
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 16px;
+  transition: border-color 0.2s;
+}
+
+input:focus, textarea:focus, select:focus {
+  border-color: #2e7d32;
+  outline: none;
+}
+
+.row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+
+.btn-submit {
+  width: 100%;
+  padding: 14px;
+  background-color: #2e7d32;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 15px;
+  transition: background 0.3s, transform 0.1s;
+}
+
+.btn-submit:hover {
+  background-color: #1b5e20;
+}
+
+.btn-submit:active {
+  transform: translateY(1px);
+}
+
+.btn-submit:disabled {
+  background-color: #bdc3c7;
+  cursor: not-allowed;
+}
+
+.error { color: #dc3545; font-size: 12px; margin-top: 5px; }
+
+.form-group input.invalid, textarea.invalid, select.invalid {
+  border-color: #dc2626;
+  background-color: #fffafb;
+}
+
+.error-container {
+  min-height: 10px;
+  margin-top: 2px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.error-msg {
+  color: #dc2626;
+  font-size: 12px;
+  line-height: 1; /* Evita que o espaçamento entre linhas aumente o container */
+  margin: 0;
+}
+
+/* Responsividade Básica */
+@media (max-width: 600px) {
+  .row { grid-template-columns: 1fr; }
+  .form-header { flex-direction: column; gap: 15px; }
+  .btn-voltar { position: static; }
+  .form-projeto { padding: 25px; }
+}

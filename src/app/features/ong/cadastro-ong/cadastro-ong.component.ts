@@ -1,9 +1,9 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, Validators, FormGroup } from '@angular/forms';
-import { OngService } from '../../core/services/ong.service';
+import { OngService } from '../../../core/services/ong.service';
 import { Router } from '@angular/router';
-import { CnpjMaskDirective } from '../../shared/directives/cnpj-mask.directive';
+import { CnpjMaskDirective } from '../../../shared/directives/cnpj-mask.directive';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -57,14 +57,14 @@ export class CadastroOngComponent {
       next: (ongCadastrada) => {
         Swal.fire({
           title: 'Sucesso!',
-          text: 'ONG cadastrada com sucesso no Voluntech.',
+          text: 'ONG cadastrada! Agora você pode fazer login para gerenciar seus projetos.',
           icon: 'success',
           confirmButtonColor: '#2563eb', // Cor azul que estamos usando
-          confirmButtonText: 'Ir para o painel',
+          confirmButtonText: 'Fazer Login',
         }).then(() => {
           this.formOng.reset();
           // Redireciona para o painel ou home
-          this.router.navigate(['/']);
+          this.router.navigate(['/login'], { queryParams: { email: dadosParaEnvio.email }});
         });
       },
       error: (err) => {

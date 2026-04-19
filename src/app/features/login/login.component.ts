@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { AuthService } from '../../core/services/auth.service';
 import { CommonModule } from '@angular/common';
@@ -12,19 +12,39 @@ import { CommonModule } from '@angular/common';
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit{
 
   loginForm: FormGroup;
   isSenhaVisivel: boolean = false;
 
-  constructor(private fb: FormBuilder, private router: Router, private authService: AuthService) {
+  constructor(private fb: FormBuilder, private router: Router, private authService: AuthService, private route: ActivatedRoute) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email, Validators.pattern(/^\S+@\S+\.\S+$/)]],
       senha: ['', [ Validators.required, Validators.minLength(6), Validators.maxLength(12), Validators.pattern(/^\S+$/) ]],
     });
   }
 
+  ngOnInit(): void {
+    // Captura o email da URL se ele existir
+    const emailDaUrl = this.route.snapshot.queryParamMap.get('email');
+
+    if (emailDaUrl) {
+      // Preenche o campo de email automaticamente
+      this.loginForm.patchValue({ email: emailDaUrl });
+
+      // Opcional: Já marca como "touched" para o usuário ver que está validado
+      this.loginForm.get('email')?.markAsTouched();
+    }
+  }
+
   logar() {
+
+    if (this.loginForm.invalid) {
+      // Se o formulário estiver inválido, marca todos os campos para mostrar o erro
+      this.loginForm.markAllAsTouched();
+      return; // Para a execução aqui
+    }
+
     if (this.loginForm.valid) {
       this.authService.login(this.loginForm.value).subscribe({
         next: (user) => {
@@ -49,7 +69,7 @@ export class LoginComponent {
   }
 
   irParaHome() {
-    this.router.navigate(['/home']);
+    this.router.navigate(['/']);
   }
 
   toggleSenha() {

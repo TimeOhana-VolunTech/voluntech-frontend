@@ -1,0 +1,76 @@
+<div class="dashboard-container">
+  <app-header></app-header>
+
+  <div class="container">
+    <form [formGroup]="projetoForm" (ngSubmit)="cadastrarProjeto()" class="form-projeto">
+      <div class="form-header">
+        <button type="button" class="btn-voltar" routerLink="/home-ong">← Voltar</button>
+        <h2>Criar Novo Projeto</h2>
+      </div>
+
+      <div class="form-group">
+        <label for="titulo">Título do Projeto*</label>
+        <input id="titulo" type="text" formControlName="titulo" placeholder="Ex: Reforço Escolar"
+                [class.invalid]="projetoForm.get('titulo')?.invalid && projetoForm.get('titulo')?.touched">
+
+        <div class="error-container">
+          @if (projetoForm.get('titulo')?.touched) {
+            <small class="error-msg" *ngIf="projetoForm.get('titulo')?.errors?.['required']">O Titulo é obrigatório.</small>
+            <small class="error-msg" *ngIf="projetoForm.get('titulo')?.errors?.['minlength']">Mínimo de 5 caracteres.</small>
+            <small class="error-msg" *ngIf="projetoForm.get('titulo')?.errors?.['maxlength']">Máximo de 100 caracteres.</small>
+            <small class="error-msg" *ngIf="projetoForm.get('titulo')?.errors?.['pattern']">O Titulo não pode ser vazio ou conter apenas espaços.</small>
+          }
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="descricao">Descrição*</label>
+        <textarea id="descricao" formControlName="descricao" rows="4" placeholder="Descreva a oportunidade..."
+                  [class.invalid]="projetoForm.get('descricao')?.invalid && projetoForm.get('descricao')?.touched"></textarea>
+
+        <div class="error-container">
+          @if (projetoForm.get('descricao')?.touched) {
+            <small class="error-msg" *ngIf="projetoForm.get('descricao')?.errors?.['required']">A descrição é obrigatório.</small>
+            <small class="error-msg" *ngIf="projetoForm.get('descricao')?.errors?.['minlength']">Mínimo de 10 caracteres.</small>
+            <small class="error-msg" *ngIf="projetoForm.get('descricao')?.errors?.['maxlength']">Máximo de 1000 caracteres.</small>
+            <small class="error-msg" *ngIf="projetoForm.get('descricao')?.errors?.['pattern']">A descrição não pode ser vazio ou conter apenas espaços.</small>
+          }
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="form-group">
+          <label for="prazo">Prazo Limite*</label>
+          <input id="prazo" type="date" formControlName="prazo"
+                  [class.invalid]="projetoForm.get('prazo')?.invalid && projetoForm.get('prazo')?.touched">
+
+          <div class="error-container">
+            @if (projetoForm.get('prazo')?.touched) {
+              <small class="error-msg" *ngIf="projetoForm.get('prazo')?.errors?.['required']">O prazo é obrigatório.</small>
+            }
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="modalidade">Modalidade (Opcional)</label>
+          <select id="modalidade" formControlName="modalidade">
+            <option value="">Selecione...</option>
+            <option *ngFor="let m of modalidades" [value]="m">{{m}}</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="categoria">Categoria (Opcional)</label>
+        <select id="categoria" formControlName="categoria">
+          <option value="">Selecione...</option>
+          <option *ngFor="let c of categorias" [value]="c">{{c}}</option>
+        </select>
+      </div>
+
+      <div class="actions">
+        <button type="submit" class="btn-submit">Publicar Projeto</button>
+      </div>
+    </form>
+  </div>
+</div>

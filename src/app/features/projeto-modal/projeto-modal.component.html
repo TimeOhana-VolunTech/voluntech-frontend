@@ -1,0 +1,40 @@
+<div class="modal-overlay" (click)="fechar()">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <button class="btn-close" (click)="fechar()">&times;</button>
+
+    <div class="modal-body" *ngIf="projeto">
+      <div class="projeto-header-img">
+        <img [src]="getImagemProjeto()" alt="Imagem do Projeto">
+        <div class="img-overlay" *ngIf="projeto?.categoria">
+          <span class="categoria-tag">{{ projeto.categoria }}</span>
+        </div>
+      </div>
+
+      <div class="projeto-info">
+        <div class="badge-row">
+          <span class="status-badge">{{ projeto.status }}</span>
+          <span class="categoria-badge" *ngIf="projeto.categoria">{{ projeto.categoria }}</span>
+        </div>
+
+        <h1>{{ projeto.titulo }}</h1>
+        <p class="ong-nome" *ngIf="projeto.nomeOng">Realizado por: <strong>{{ projeto.nomeOng }}</strong></p>
+
+        <div class="detalhes-grid">
+          <div class="item">
+            <span class="label">📅 Prazo</span>
+            <span class="valor">{{ projeto.prazo | date:'dd/MM/yyyy' }}</span>
+          </div>
+          <div class="item">
+            <span class="label">📍 Modalidade</span>
+            <span class="valor">{{ projeto.modalidade }}</span>
+          </div>
+        </div>
+
+        <div class="descricao-completa">
+          <h3>Sobre a oportunidade</h3>
+          <p>{{ projeto.descricao }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

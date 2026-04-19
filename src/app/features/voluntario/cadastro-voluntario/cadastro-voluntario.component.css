@@ -4,8 +4,9 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  overflow: hidden;
+  min-height: 100vh;       /* Altura mínima da tela, mas permite crescer */
+  overflow-y: auto;        /* Permite scroll vertical se necessário */
+  height: auto;
   padding: 40px 20px;
   font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
   background-color: #f3f4f6;
@@ -72,7 +73,7 @@
   box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
 }
 
-.form-group input.invalid {
+.form-group input.invalid, select.invalid{
   border-color: #dc2626;
   background-color: #fffafb;
 }
@@ -184,7 +185,8 @@ button[type="submit"]:disabled {
     justify-content: flex-start; /* Alinha no topo */
     padding-top: 20px;
     overflow-y: auto; /* Permite rolar APENAS dentro do container se o celular for pequeno */
-    height: 100vh;
+    height: auto;
+    min-height: 100vh;
   }
 
   .main-title {
