@@ -2,10 +2,10 @@
   <app-header></app-header>
 
   <div class="container">
-    <form [formGroup]="projetoForm" (ngSubmit)="cadastrarProjeto()" class="form-projeto">
+    <form [formGroup]="projetoForm" (ngSubmit)="salvarProjeto()" class="form-projeto">
       <div class="form-header">
         <button type="button" class="btn-voltar" routerLink="/home-ong">← Voltar</button>
-        <h2>Criar Novo Projeto</h2>
+        <h2>{{ isEdicao ? 'Editar Projeto' : 'Criar Novo Projeto' }}</h2>
       </div>
 
       <div class="form-group">
@@ -69,7 +69,7 @@
       </div>
 
       <div class="actions">
-        <button type="submit" class="btn-submit">Publicar Projeto</button>
+        <button type="submit" class="btn-submit">{{ isEdicao ? 'Atualizar Projeto' : 'Publicar Projeto' }}</button>
       </div>
     </form>
   </div>

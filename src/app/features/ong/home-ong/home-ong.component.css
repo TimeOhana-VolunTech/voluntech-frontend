@@ -139,23 +139,79 @@
   margin-bottom: 1rem;
 }
 
+/* Badge de Status com cores dinâmicas */
 .status-badge {
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
   background: #e8f5e9;
   color: #2e7d32;
-  padding: 4px 8px;
-  border-radius: 4px;
-  font-size: 0.75rem;
-  font-weight: bold;
 }
 
-.card-footer {
-  margin-top: 1.5rem;
-  padding-top: 1rem;
-  border-top: 1px solid #eee;
+.status-badge.status-pausada {
+  background: #fff3e0;
+  color: #ef6c00;
+}
+
+.footer-info {
   display: flex;
-  justify-content: space-between;
-  font-size: 0.85rem;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 0.8rem;
+  color: #777;
+  margin-bottom: 15px;
+}
+
+.footer-info span i {
+  width: 16px;
+  margin-right: 4px;
+  color: #2e7d32;
+}
+
+/* Botões de Ação */
+.card-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.btn-icon {
+  width: 35px;
+  height: 35px;
+  border-radius: 8px;
+  border: 1px solid #eee;
+  background: #fdfdfd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
   color: #666;
+}
+
+.btn-icon:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* Cores específicas para cada ação no hover */
+.btn-edit:hover {
+  color: #1976d2;
+  border-color: #1976d2;
+  background: #e3f2fd;
+}
+
+.btn-status:hover {
+  color: #ef6c00;
+  border-color: #ef6c00;
+  background: #fff3e0;
+}
+
+.btn-delete:hover {
+  color: #d32f2f;
+  border-color: #d32f2f;
+  background: #ffebee;
 }
 
 .empty-msg {
@@ -201,7 +257,13 @@
 
   .card-footer {
     flex-direction: column;
-    gap: 0.5rem;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .card-actions {
+    width: 100%;
+    justify-content: flex-end;
   }
 
   .logo {

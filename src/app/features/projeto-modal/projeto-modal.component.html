@@ -12,7 +12,9 @@
 
       <div class="projeto-info">
         <div class="badge-row">
-          <span class="status-badge">{{ projeto.status }}</span>
+          <span class="status-badge" [class.status-pausada]="projeto.status === 'PAUSADA'">
+            {{ projeto.status }}
+          </span>
           <span class="categoria-badge" *ngIf="projeto.categoria">{{ projeto.categoria }}</span>
         </div>
 
@@ -33,6 +35,21 @@
         <div class="descricao-completa">
           <h3>Sobre a oportunidade</h3>
           <p>{{ projeto.descricao }}</p>
+        </div>
+
+        <div class="modal-actions">
+          <button class="btn-action btn-edit" (click)="irParaEditar()">
+            <i class="fa-regular fa-pen-to-square"></i> Editar Projeto
+          </button>
+
+          <button class="btn-action btn-status" (click)="alternarStatus()">
+            <i [class]="projeto.status === 'ATIVA' ? 'fa-solid fa-pause' : 'fa-solid fa-play'"></i>
+            {{ projeto.status === 'ATIVA' ? 'Pausar' : 'Ativar' }}
+          </button>
+
+          <button class="btn-action btn-delete" (click)="excluir()">
+            <i class="fa-solid fa-trash"></i> Excluir
+          </button>
         </div>
       </div>
     </div>
