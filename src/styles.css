@@ -4,3 +4,8 @@ html, body {
   padding: 0;
   height: 100%;
 }
+
+/* Garante que o SweetAlert fique acima do seu modal (que está em 2000) */
+.swal2-container {
+  z-index: 3000 !important;
+}

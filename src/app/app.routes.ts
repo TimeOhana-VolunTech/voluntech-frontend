@@ -17,6 +17,7 @@ export const routes: Routes = [
 
   { path: 'home-ong', component: HomeOngComponent, canActivate: [authGuard] },
   { path: 'novo-projeto', component: ProjetoFormComponent, canActivate: [authGuard] },
+  { path: 'editar-projeto/:id', component: ProjetoFormComponent, canActivate: [authGuard] },
 
   { path: 'home-voluntario', component: HomeVoluntarioComponent, canActivate: [authGuard] },
 

@@ -28,4 +28,19 @@ export class ProjetoService {
   buscarPorId(id: number): Observable<Projeto> {
     return this.http.get<Projeto>(`${this.API}/${id}`);
   }
+
+  /* Atualizar projeto completo (PUT) */
+  atualizar(id: number, projeto: Projeto): Observable<Projeto> {
+    return this.http.put<Projeto>(`${this.API}/${id}`, projeto);
+  }
+
+  /* Alterar apenas o status (PATCH) */
+  alterarStatus(id: number, novoStatus: string): Observable<Projeto> {
+    return this.http.patch<Projeto>(`${this.API}/${id}/status?novoStatus=${novoStatus}`, {});
+  }
+
+  /* Excluir projeto (DELETE) */
+  excluir(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.API}/${id}`);
+  }
 }

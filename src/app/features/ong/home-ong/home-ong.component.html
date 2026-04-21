@@ -19,16 +19,39 @@
         <div class="card" *ngFor="let p of projetos" (click)="abrirDetalhes(p)">
           <div class="card-header">
             <h3>{{ p.titulo }}</h3>
-            <span class="status-badge">{{ p.status }}</span>
+            <span class="status-badge" [ngClass]="{'status-pausada': p.status === 'PAUSADA'}">
+              {{ p.status }}
+            </span>
           </div>
           <p>{{ p.descricao }}</p>
           <div class="card-footer">
-            <span>📅 Prazo: {{ p.prazo | date:'dd/MM/yyyy' }}</span>
-            <span>📍 {{ p.modalidade }}</span>
+            <div class="footer-info">
+              <span><i class="fa-regular fa-calendar-days"></i> {{ p.prazo | date:'dd/MM/yyyy' }}</span>
+              <span><i class="fa-solid fa-location-dot"></i> {{ p.modalidade }}</span>
+            </div>
+
+            <div class="card-actions">
+              <button class="btn-icon btn-edit" (click)="$event.stopPropagation(); irParaEditar(p.id!)" title="Editar">
+                <i class="fa-regular fa-pen-to-square"></i>
+              </button>
+
+              <button class="btn-icon btn-status" (click)="$event.stopPropagation(); alternarStatus(p)"
+                      [title]="p.status === 'ATIVA' ? 'Pausar' : 'Ativar'">
+                <i [class]="p.status === 'ATIVA' ? 'fa-solid fa-pause' : 'fa-solid fa-play'"></i>
+              </button>
+
+              <button class="btn-icon btn-delete" (click)="$event.stopPropagation(); excluirProjeto(p.id!)" title="Excluir">
+                <i class="fa-solid fa-trash"></i>
+              </button>
+            </div>
           </div>
         </div>
 
-        <app-projeto-modal *ngIf="projetoSelecionado" [projeto]="projetoSelecionado" (close)="fecharModal()">
+        <app-projeto-modal
+          *ngIf="projetoSelecionado"
+          [projeto]="projetoSelecionado"
+          (close)="fecharModal()"
+          (atualizou)="recarregarLista()">
         </app-projeto-modal>
       </div>
 

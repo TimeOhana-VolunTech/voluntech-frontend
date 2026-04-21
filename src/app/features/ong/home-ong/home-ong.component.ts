@@ -6,6 +6,8 @@ import { Router } from '@angular/router';
 import { Projeto } from '../../../core/models/projeto.model';
 import { HeaderComponent } from '../../header/header.component';
 import { ProjetoModalComponent } from '../../projeto-modal/projeto-modal.component';
+import Swal from 'sweetalert2';
+import { StatusProjeto } from '../../../core/models/enums/status-projeto.enum';
 
 @Component({
   selector: 'app-home-ong',
@@ -15,7 +17,9 @@ import { ProjetoModalComponent } from '../../projeto-modal/projeto-modal.compone
   styleUrl: './home-ong.component.css'
 })
 export class HomeOngComponent implements OnInit {
+  StatusProjeto = StatusProjeto;
   nomeUsuario: string = '';
+  usuarioId: number | null = null;
   projetos: Projeto[] = [];
   projetoSelecionado: Projeto | null = null;
 
@@ -28,6 +32,7 @@ export class HomeOngComponent implements OnInit {
   ngOnInit() {
     const dados = this.authService.getUsuarioAtual();
     this.nomeUsuario = dados?.nome || 'ONG';
+    this.usuarioId = dados?.id || null;
 
     if (dados?.id) {
       this.carregarProjetos(dados.id);
@@ -39,6 +44,13 @@ export class HomeOngComponent implements OnInit {
       next: (data) => this.projetos = data,
       error: (err) => console.error('Erro ao carregar projetos', err)
     });
+  }
+
+  // Método de recarregar que será chamado pelo modal
+  recarregarLista() {
+    if (this.usuarioId) {
+      this.carregarProjetos(this.usuarioId);
+    }
   }
 
   irParaNovoProjeto() {
@@ -57,4 +69,47 @@ export class HomeOngComponent implements OnInit {
   fecharModal() {
     this.projetoSelecionado = null;
   }
+
+  irParaEditar(id: number) {
+    this.router.navigate(['/editar-projeto', id]);
+  }
+
+  alternarStatus(projeto: Projeto) {
+    const novoStatus = projeto.status === StatusProjeto.ATIVA
+    ? StatusProjeto.PAUSADA
+    : StatusProjeto.ATIVA;
+
+    this.projetoService.alterarStatus(projeto.id!, novoStatus).subscribe({
+      next: () => {
+        projeto.status = novoStatus; // Atualiza na tela sem recarregar tudo
+        Swal.fire({
+          toast: true, position: 'top-end', icon: 'success',
+          title: `Projeto ${novoStatus === 'ATIVA' ? 'Reativado' : 'Pausado'}`,
+          showConfirmButton: false, timer: 2000
+        });
+      }
+    });
+  }
+
+  excluirProjeto(id: number) {
+    Swal.fire({
+      title: 'Tem certeza?',
+      text: "Esta ação não pode ser desfeita!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#dc3545',
+      confirmButtonText: 'Sim, excluir!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.projetoService.excluir(id).subscribe({
+          next: () => {
+            this.projetos = this.projetos.filter(p => p.id !== id);
+            Swal.fire('Excluído!', 'O projeto foi removido.', 'success');
+          }
+        });
+      }
+    });
+  }
+
+
 }
