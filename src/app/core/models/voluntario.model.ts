@@ -1,3 +1,5 @@
+import { Categoria } from "./enums/categoria.enum";
+
 export interface Voluntario {
   id?: number;
   nome: string;

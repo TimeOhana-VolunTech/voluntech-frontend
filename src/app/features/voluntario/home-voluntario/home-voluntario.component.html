@@ -1,14 +1,91 @@
-<div class="home-voluntario-container">
-  <header class="navbar-logada">
-    <span class="logo">VolunTech</span>
-    <button class="btn-logout" (click)="sair()">Sair</button>
-  </header>
+<div class="dashboard-container">
+  <app-header></app-header>
 
-  <main class="dashboard-content">
-    <section class="welcome-section">
-      <h1>Bem-vindo, {{ nomeVoluntario }}! </h1>
-      <p>Home voluntario</p>
+  <main class="content">
+    <div class="welcome-section">
+      <div class="welcome-text">
+        <h1>Olá, {{ nomeVoluntario }}!</h1>
+        <p>Explore novas oportunidades e encontre o projeto ideal para você.</p>
+      </div>
+    </div>
+
+    <section class="filtros-dashboard">
+      <div class="busca-wrapper">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input
+          type="text"
+          [formControl]="filtroBusca"
+          placeholder="Buscar por título ou descrição..."
+          class="input-busca-dash">
+      </div>
+
+      <div class="selects-wrapper">
+        <select [(ngModel)]="categoriaSelecionada" (change)="aplicarFiltros()">
+          <option value="">Todas as Categorias</option>
+          <option value="SAUDE">Saúde</option>
+          <option value="EDUCACAO">Educação</option>
+          <option value="MEIO_AMBIENTE">Meio Ambiente</option>
+          <option value="ASSISTENCIA_SOCIAL">Assistência Social</option>
+          <option value="TECNOLOGIA">Tecnologia</option>
+        </select>
+
+        <select [(ngModel)]="modalidadeSelecionada" (change)="aplicarFiltros()">
+          <option value="">Todas as Modalidades</option>
+          <option value="REMOTA">Remota</option>
+          <option value="PRESENCIAL">Presencial</option>
+        </select>
+
+        <button class="btn-limpar-filtros" (click)="limparFiltros()" title="Limpar Filtros">
+          <i class="fa-solid fa-filter-circle-xmark"></i>
+          <span>Limpar</span>
+        </button>
+      </div>
     </section>
 
+    <section class="projetos-lista">
+      <h2>Oportunidades Disponíveis</h2>
+
+      <div class="cards-grid" *ngIf="projetos.length > 0; else emptyState">
+        <div class="card" *ngFor="let p of projetos" (click)="verDetalhes(p)">
+          <div class="card-header">
+            <h3>{{ p.titulo }}</h3>
+            <span class="status-badge">
+              {{ p.categoria }}
+            </span>
+          </div>
+
+          <p class="descricao-projeto">{{ p.descricao }}</p>
+
+          <div class="card-footer">
+            <div class="footer-info">
+              <span><i class="fa-regular fa-calendar-days"></i> Prazo: {{ p.prazo | date:'dd/MM/yyyy' }}</span>
+              <span>
+                <i [class]="p.modalidade === 'REMOTA' ? 'fa-solid fa-laptop-house' : 'fa-solid fa-location-dot'"></i>
+                {{ p.modalidade }}
+              </span>
+            </div>
+
+            <div class="card-actions">
+              <button class="btn-detalhes-texto">
+                Detalhes
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <ng-template #emptyState>
+        <div class="empty-msg">
+          <p *ngIf="isCarregando">Buscando oportunidades...</p>
+          <p *ngIf="!isCarregando">Nenhum projeto encontrado com esses filtros. Tente outra busca!</p>
+        </div>
+      </ng-template>
+    </section>
   </main>
 </div>
+
+<app-projeto-detalhe
+  *ngIf="projetoSelecionado"
+  [projeto]="projetoSelecionado"
+  (close)="fecharModal()">
+</app-projeto-detalhe>

@@ -84,7 +84,7 @@ export class ProjetoModalComponent {
 
     const imagens: { [key: string]: string } = {
       'EDUCACAO': 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?q=80&w=800',
-      'SAUDE': 'https://images.unsplash.com/photo-1505751172107-111161a0676b?q=80&w=800',
+      'SAUDE': 'https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?q=80&w=800',
       'TECNOLOGIA': 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=800',
       'MEIO_AMBIENTE': 'https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?q=80&w=800',
       'ASSISTENCIA_SOCIAL': 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=800'
