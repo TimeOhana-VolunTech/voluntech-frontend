@@ -6,38 +6,6 @@
   font-family: 'Segoe UI', Roboto, sans-serif;
 }
 
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem 2%;
-  background-color: #ffffff;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-}
-
-.logo {
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: #2e7d32;
-}
-
-.btn-sair {
-  padding: 0.5rem 1.2rem;
-  background-color: #d32f2f;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: opacity 0.2s;
-}
-
-.btn-sair:hover {
-  opacity: 0.9;
-}
-
 .content {
   padding: 2rem 5% 4rem 5%;
   max-width: 1400px;
@@ -45,6 +13,7 @@
   width: 100%;
   box-sizing: border-box;
 }
+
 
 .welcome-section {
   display: flex;
@@ -132,7 +101,7 @@
 
   /* Lógica das reticências */
   display: -webkit-box;
-  -webkit-line-clamp: 3; /* Número de linhas antes do ... */
+  -webkit-line-clamp: 2; /* Número de linhas antes do ... */
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -153,6 +122,16 @@
 .status-badge.status-pausada {
   background: #fff3e0;
   color: #ef6c00;
+}
+
+/* Rodapé do Card */
+.card-footer {
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid #eee;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .footer-info {

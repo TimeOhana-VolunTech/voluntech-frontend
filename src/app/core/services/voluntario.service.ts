@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Voluntario, VoluntarioRequest } from '../models/voluntario.model';
 import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
+import { Categoria } from '../models/enums/categoria.enum';
 
 @Injectable({ providedIn: 'root' })
 export class VoluntarioService {
@@ -17,4 +18,5 @@ export class VoluntarioService {
   listar(): Observable<Voluntario[]> {
     return this.http.get<Voluntario[]>(this.API);
   }
+
 }

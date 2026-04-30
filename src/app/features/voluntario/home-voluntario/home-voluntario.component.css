@@ -1,0 +1,249 @@
+/* Importando a base da ONG */
+.dashboard-container {
+  display: block;
+  min-height: 100vh;
+  width: 100%;
+  background-color: #f4f7f6;
+  font-family: 'Segoe UI', Roboto, sans-serif;
+}
+
+.content {
+  padding: 2rem 5% 4rem 5%;
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Reutilizando Welcome Section da ONG */
+.welcome-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+.welcome-text h1 { margin: 0; color: #333; }
+.welcome-text p { margin: 0.5rem 0 0 0; color: #666; }
+
+
+/* Nova seção de filtros integrada ao estilo */
+.filtros-dashboard {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  align-items: center;
+  width: 100%;
+}
+
+.busca-wrapper {
+  position: relative;
+  flex: 3; /* Aumenta a proporção da busca, mas mantém limites */
+  min-width: 280px;
+}
+
+.busca-wrapper i {
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #2e7d32;
+}
+
+.input-busca-dash {
+  width: 100%;
+  padding: 0.8rem 1rem 0.8rem 2.5rem;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  outline: none;
+  font-size: 1rem;
+  box-sizing: border-box; /* Garante que o padding não ultrapasse a largura */
+}
+
+.selects-wrapper {
+  display: flex;
+  gap: 0.5rem;
+  flex: 2;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.selects-wrapper select {
+  padding: 0.8rem;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  background: white;
+  color: #444;
+  cursor: pointer;
+  min-width: 160px;
+}
+
+.btn-limpar-filtros {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0.8rem 1.2rem;
+  background-color: white;
+  color: #2e7d32;
+  border: 1px solid #2e7d32;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  height: 46px; /* Altura aproximada do select para alinhar */
+}
+
+.btn-limpar-filtros:hover {
+  background-color: #2e7d32;
+  color: white;
+}
+
+/* Cards */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 1.5rem;
+}
+
+.card {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 10px;
+  border-left: 5px solid #2e7d32; /* Cor verde da Voluntech */
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s;
+  cursor: pointer;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center; /* Alinha o centro da badge com o centro do texto do título */
+  gap: 10px;
+  width: 100%;
+  margin-bottom: 1rem; /* Dá o espaço que a ONG ocupava antes */
+}
+
+.card h3 {
+  color: #2e7d32;
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+  flex: 1;
+}
+
+.status-badge {
+  background: #e8f5e9;
+  color: #2e7d32;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 0.65rem;
+  font-weight: bold;
+  white-space: nowrap;
+  margin-top: 5px;
+}
+
+.descricao-projeto {
+  font-size: 0.95rem;
+  color: #555;
+  line-height: 1.5;
+  margin: 0.5rem 0 1rem 0;
+
+  /* Mágica do line-clamp */
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* Exibe no máximo 3 linhas */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Rodapé do Card */
+.card-footer {
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid #eee;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-info { font-size: 0.8rem; color: #777; display: flex; flex-direction: column; gap: 4px; }
+.footer-info i { color: #2e7d32; margin-right: 5px; }
+
+.footer-info span {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.footer-info i {
+  width: 16px; /* Garante alinhamento vertical dos ícones */
+  text-align: center;
+}
+
+/* --- Novo Botão de Detalhes --- */
+.btn-detalhes-texto {
+  background-color: #2e7d32;
+  color: white;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(46, 125, 50, 0.2);
+}
+
+.btn-detalhes-texto:hover {
+  background-color: #1b5e20;
+  transform: scale(1.03);
+}
+
+/* --- RESPONSIVIDADE --- */
+
+@media (max-width: 1100px) {
+  .filtros-dashboard {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .busca-wrapper {
+    width: 100%;
+  }
+
+  .selects-wrapper {
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 768px) {
+  .selects-wrapper {
+    flex-wrap: wrap; /* Em telas muito pequenas, os selects quebram linha */
+  }
+
+  .selects-wrapper select,
+  .btn-limpar-filtros {
+    flex: 1; /* Ocupam largura igual no celular */
+    min-width: 140px;
+  }
+
+
+  .btn-limpar-filtros {
+    flex: 0 0 50px; /* Mantém o botão menor no mobile */
+    justify-content: center;
+  }
+
+  .cards-grid {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  }
+}

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Projeto } from '../models/projeto.model'; // Verifique o caminho do seu model
 import { environment } from '../../../environments/environment';
@@ -42,5 +42,15 @@ export class ProjetoService {
   /* Excluir projeto (DELETE) */
   excluir(id: number): Observable<void> {
     return this.http.delete<void>(`${this.API}/${id}`);
+  }
+
+  explorar(categoria?: string, modalidade?: string, termo?: string): Observable<Projeto[]> {
+    let params = new HttpParams();
+
+    if (categoria) params = params.set('categoria', categoria);
+    if (modalidade) params = params.set('modalidade', modalidade);
+    if (termo) params = params.set('termo', termo);
+
+    return this.http.get<Projeto[]>(`${this.API}/explorar`, { params });
   }
 }
