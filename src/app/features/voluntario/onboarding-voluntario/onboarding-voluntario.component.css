@@ -1,0 +1,187 @@
+/* Container Principal */
+.onboarding-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+  min-height: 100vh;
+  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* Card */
+.onboarding-card {
+  background: white;
+  padding: 40px;
+  border-radius: 16px;
+  max-width: 550px;
+  width: 100%;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+}
+
+.header h2 {
+  color: #1f2937;
+  font-size: 1.8rem;
+  margin-bottom: 8px;
+}
+
+.header span {
+  color: #2e7d32;
+}
+
+.header p {
+  color: #6b7280;
+  margin-bottom: 30px;
+}
+
+/* Inputs */
+.form-group {
+  margin-bottom: 25px;
+}
+
+.form-group label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  font-size: 15px;
+  transition: all 0.2s ease-in-out;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #2e7d32;
+}
+
+
+.form-group input.invalid, select.invalid{
+  border-color: #dc2626;
+  background-color: #fffafb;
+}
+
+textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  resize: vertical;
+  font-family: inherit;
+  transition: all 0.2s ease-in-out;
+}
+
+textarea:focus {
+  outline: none;
+  border-color: #2e7d32;
+}
+
+.error-container {
+  min-height: 20px;
+  margin-top: 4px;
+  overflow: hidden;
+}
+
+.error-msg {
+  color: #dc2626;
+  font-size: 12px;
+  margin: 0;
+  display: block;
+  /* Animação suave opcional */
+  animation: fadeIn 0.2s ease-in;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Chips */
+.selection-section {
+  margin-bottom: 25px;
+}
+
+.selection-section label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 12px;
+  color: #374151;
+}
+
+.chip-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.chip-grid button {
+  padding: 10px 18px;
+  border: 1.5px solid #e5e7eb;
+  border-radius: 50px;
+  background: #f9fafb;
+  color: #4b5563;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.chip-grid button:hover {
+  background: #f3f4f6;
+  border-color: #d1d5db;
+}
+
+.chip-grid button.active {
+  background-color: #2e7d32;
+  color: white;
+  border-color: #2e7d32;
+  box-shadow: 0 4px 10px rgba(37, 99, 235, 0.2);
+}
+
+/* Ações */
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 40px;
+}
+
+.btn-finalizar {
+  width: 100%;
+  padding: 14px;
+  background-color: #10b981;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.btn-finalizar:hover:not(:disabled) {
+  background-color: #059669;
+}
+
+.btn-finalizar:disabled {
+  background-color: #d1d5db;
+  cursor: not-allowed;
+}
+
+.btn-pular {
+  background: transparent;
+  color: #6b7280;
+  border: none;
+  padding: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: underline;
+  transition: color 0.3s;
+}
+
+.btn-pular:hover {
+  color: #374151;
+}

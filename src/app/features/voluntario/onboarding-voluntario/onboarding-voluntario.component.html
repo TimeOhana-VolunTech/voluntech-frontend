@@ -1,0 +1,95 @@
+<div class="onboarding-container">
+  <div class="onboarding-card">
+    <div class="header">
+      <h2>Seja bem-vindo, <span>{{ usuarioAtual?.nome }}</span>!</h2>
+      <p>Personalize sua experiência para encontrarmos as melhores causas para você.</p>
+    </div>
+
+    <form [formGroup]="onboardingForm" (ngSubmit)="salvarPerfil()">
+      <!-- Telefone -->
+      <div class="form-group">
+        <label>WhatsApp / Telefone</label>
+        <input type="text" formControlName="telefone" placeholder="Ex: 11999998888"
+          [class.invalid]="onboardingForm.get('telefone')?.invalid && onboardingForm.get('telefone')?.touched">
+        <div class="error-container">
+          @if (onboardingForm.get('telefone')?.touched && onboardingForm.get('telefone')?.invalid) {
+            <small class="error-msg" *ngIf="onboardingForm.get('telefone')?.errors?.['required']">O Telefone é obrigatório.</small>
+            <small class="error-msg" *ngIf="onboardingForm.get('telefone')?.errors?.['pattern']">Informe um telefone válido (10 ou 11 dígitos).</small>
+          }
+        </div>
+      </div>
+
+      <!-- Habilidades -->
+      <div class="selection-section">
+        <label>Suas Habilidades</label>
+        <div class="chip-grid">
+          <button type="button" *ngFor="let h of listaHabilidades"
+            [class.active]="onboardingForm.get('habilidades')?.value.includes(h)"
+            (click)="toggleItem('habilidades', h)">
+            {{ h }}
+          </button>
+        </div>
+        <div class="error-container">
+          @if (onboardingForm.get('habilidades')?.touched && onboardingForm.get('habilidades')?.invalid) {
+            <small class="error-msg">Selecione pelo menos uma habilidade.</small>
+          }
+        </div>
+      </div>
+
+      <!-- Causas -->
+        <div class="selection-section">
+          <label>Causas de Interesse</label>
+          <div class="chip-grid">
+            <button type="button" *ngFor="let c of listaCausas"
+              [class.active]="onboardingForm.get('causas')?.value.includes(c)"
+              (click)="toggleItem('causas', c)">
+              {{ c }}
+            </button>
+          </div>
+          <div class="error-container">
+            @if (onboardingForm.get('causas')?.touched && onboardingForm.get('causas')?.invalid) {
+              <small class="error-msg">Selecione pelo menos uma causa de interesse.</small>
+            }
+          </div>
+        </div>
+
+      <!-- Disponibilidade -->
+        <div class="selection-section">
+          <label>Sua Disponibilidade</label>
+          <div class="chip-grid">
+            <button type="button" *ngFor="let d of listaDisponibilidade"
+              [class.active]="onboardingForm.get('disponibilidades')?.value.includes(d)"
+              (click)="toggleItem('disponibilidades', d)">
+              {{ d }}
+            </button>
+          </div>
+          <div class="error-container">
+            @if (onboardingForm.get('disponibilidades')?.touched && onboardingForm.get('disponibilidades')?.invalid) {
+              <small class="error-msg">Informe ao menos um período de disponibilidade.</small>
+            }
+          </div>
+        </div>
+
+      <!-- Bio -->
+        <div class="form-group">
+          <label>Bio / Resumo Profissional</label>
+          <textarea formControlName="bio" rows="3" placeholder="Conte um pouco sobre você..."></textarea>
+          <div class="error-container">
+            @if (onboardingForm.get('bio')?.touched && onboardingForm.get('bio')?.invalid) {
+              <small class="error-msg" *ngIf="onboardingForm.get('bio')?.errors?.['minlength']">A bio deve ter pelo menos 20 caracteres.</small>
+              <small class="error-msg" *ngIf="onboardingForm.get('bio')?.errors?.['maxlength']">A bio não pode exceder 500 caracteres.</small>
+            }
+          </div>
+        </div>
+
+      <div class="actions">
+        <button type="submit" class="btn-finalizar">
+          Finalizar Meu Perfil
+        </button>
+        <button type="button" (click)="pular()" class="btn-pular">
+          Pular por enquanto
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

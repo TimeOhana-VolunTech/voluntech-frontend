@@ -7,6 +7,7 @@ import { HomeOngComponent } from './features/ong/home-ong/home-ong.component';
 import { authGuard } from './core/guards/auth.guard';
 import { HomeVoluntarioComponent } from './features/voluntario/home-voluntario/home-voluntario.component';
 import { ProjetoFormComponent } from './features/ong/projeto-form/projeto-form.component';
+import { OnboardingVoluntarioComponent } from './features/voluntario/onboarding-voluntario/onboarding-voluntario.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -14,6 +15,7 @@ export const routes: Routes = [
 
   { path: 'cadastro-ong', component: CadastroOngComponent },
   { path: 'cadastro-voluntario', component: CadastroVoluntarioComponent },
+  { path: 'onboarding-voluntario', component: OnboardingVoluntarioComponent, canActivate: [authGuard] },
 
   { path: 'home-ong', component: HomeOngComponent, canActivate: [authGuard] },
   { path: 'novo-projeto', component: ProjetoFormComponent, canActivate: [authGuard] },
