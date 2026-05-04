@@ -19,4 +19,8 @@ export class VoluntarioService {
     return this.http.get<Voluntario[]>(this.API);
   }
 
+  atualizarPerfil(id: number, dados: any): Observable<Voluntario> {
+    return this.http.put<Voluntario>(`${this.API}/${id}`, dados);
+  }
+
 }

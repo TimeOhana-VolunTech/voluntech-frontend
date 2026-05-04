@@ -38,34 +38,36 @@ export class LoginComponent implements OnInit{
   }
 
   logar() {
-
     if (this.loginForm.invalid) {
-      // Se o formulário estiver inválido, marca todos os campos para mostrar o erro
       this.loginForm.markAllAsTouched();
-      return; // Para a execução aqui
+      return;
     }
 
-    if (this.loginForm.valid) {
-      this.authService.login(this.loginForm.value).subscribe({
-        next: (user) => {
-          // Se o objeto tiver CNPJ, é uma ONG. Se não, é um voluntário.
-          if (user.cnpj) {
-            this.router.navigate(['/home-ong']);
+    this.authService.login(this.loginForm.value).subscribe({
+      next: (user) => {
+        // 1. Verifica se é uma ONG (pelo campo CNPJ)
+        if (user.cnpj) {
+          this.router.navigate(['/home-ong']);
+        }
+        // 2. Se for Voluntário, verifica se precisa de Onboarding
+        else {
+          // MUDANÇA AQUI: Agora verificamos a flag booleana que vem do banco
+          if (user.onboardingCompleto === false) {
+            this.router.navigate(['/onboarding-voluntario']);
           } else {
             this.router.navigate(['/home-voluntario']);
           }
-        },
-        error: (err) => {
-          // Erro: Mostra o alerta
-          Swal.fire({
-            icon: 'error',
-            title: 'Falha no Login',
-            text: 'E-mail ou senha incorretos. Tente novamente!',
-            confirmButtonColor: '#2563eb'
-          });
         }
-      });
-    }
+      },
+      error: (err) => {
+        Swal.fire({
+          icon: 'error',
+          title: 'Falha no Login',
+          text: 'E-mail ou senha incorretos. Tente novamente!',
+          confirmButtonColor: '#2563eb'
+        });
+      }
+    });
   }
 
   irParaHome() {
