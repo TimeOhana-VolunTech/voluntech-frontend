@@ -44,7 +44,7 @@
           <!-- Telefone -->
           <div class="form-group">
             <label>WhatsApp / Telefone</label>
-            <input type="text" formControlName="telefone">
+            <input type="text" formControlName="telefone" placeholder="Ex: 11999998888">
             <div class="error-container">
               @if (perfilForm.get('telefone')?.touched && perfilForm.get('telefone')?.invalid) {
                 <small class="error-msg" *ngIf="perfilForm.get('telefone')?.errors?.['required']">O telefone é obrigatório.</small>
@@ -59,7 +59,7 @@
         <h3>Sobre Você</h3>
         <div class="form-group">
           <label>Bio / Resumo Profissional</label>
-          <textarea formControlName="bio" rows="4"></textarea>
+          <textarea formControlName="bio" rows="4" placeholder="Conte um pouco sobre você..."></textarea>
           <div class="error-container">
             @if (perfilForm.get('bio')?.touched && perfilForm.get('bio')?.invalid) {
               <small class="error-msg" *ngIf="perfilForm.get('bio')?.errors?.['minlength']">A bio deve ter pelo menos 20 caracteres.</small>

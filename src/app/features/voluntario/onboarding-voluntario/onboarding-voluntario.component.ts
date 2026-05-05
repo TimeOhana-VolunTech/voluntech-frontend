@@ -89,6 +89,11 @@ export class OnboardingVoluntarioComponent implements OnInit {
         const dadosParaAtualizar = {
           nome: this.usuarioAtual.nome,
           email: this.usuarioAtual.email,
+          telefone: '',
+          habilidades: [],
+          causas: [],
+          disponibilidades: [],
+          bio: '',
           onboardingCompleto: true
         };
 
