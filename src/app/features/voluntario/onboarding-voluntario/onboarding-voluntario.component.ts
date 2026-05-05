@@ -18,7 +18,7 @@ export class OnboardingVoluntarioComponent implements OnInit {
   usuarioAtual: any;
 
   // Opções para o usuário selecionar
-  listaHabilidades = ['Comunicação', 'Design', 'Programação', 'Cozinha', 'Organização', 'Ensino'];
+  listaHabilidades = ['Comunicação', 'Design', 'Cozinha', 'Programação', 'Artes', 'Ensino', 'Saúde', 'Logística'];
   listaCausas = ['Educação', 'Meio Ambiente', 'Saúde', 'Assistência Social', 'Tecnologia'];
   listaDisponibilidade = ['Manhã', 'Tarde', 'Noite', 'Finais de Semana', 'Remoto'];
 
