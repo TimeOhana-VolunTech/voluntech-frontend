@@ -26,7 +26,7 @@ export class HomeOngComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private projetoService: ProjetoService,
-    private router: Router // Injete o router
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -46,7 +46,6 @@ export class HomeOngComponent implements OnInit {
     });
   }
 
-  // Método de recarregar que será chamado pelo modal
   recarregarLista() {
     if (this.usuarioId) {
       this.carregarProjetos(this.usuarioId);
@@ -110,6 +109,5 @@ export class HomeOngComponent implements OnInit {
       }
     });
   }
-
 
 }

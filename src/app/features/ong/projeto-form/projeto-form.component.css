@@ -1,6 +1,6 @@
 .dashboard-container {
   min-height: 100vh;
-  background-color: #f4f7f6; /* Mantém o fundo padrão do sistema */
+  background-color: #f4f7f6;
   width: 100%;
   font-family: 'Segoe UI', Roboto, sans-serif;
 }
@@ -51,9 +51,17 @@ h2 {
   font-size: 1.8rem;
 }
 
-.form-group { margin-bottom: 20px; display: flex; flex-direction: column; }
+.form-group {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+}
 
-label { font-weight: 600; margin-bottom: 8px; color: #444; }
+label {
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #444;
+}
 
 input, textarea, select {
   padding: 12px;
@@ -68,7 +76,11 @@ input:focus, textarea:focus, select:focus {
   outline: none;
 }
 
-.row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
 
 .btn-submit {
   width: 100%;
@@ -115,11 +127,11 @@ input:focus, textarea:focus, select:focus {
 .error-msg {
   color: #dc2626;
   font-size: 12px;
-  line-height: 1; /* Evita que o espaçamento entre linhas aumente o container */
+  line-height: 1;
   margin: 0;
 }
 
-/* Responsividade Básica */
+/* Responsividade */
 @media (max-width: 600px) {
   .row { grid-template-columns: 1fr; }
   .form-header { flex-direction: column; gap: 15px; }

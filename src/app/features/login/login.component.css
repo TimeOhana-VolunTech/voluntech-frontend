@@ -68,7 +68,6 @@
   box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
 }
 
-/* Borda vermelha quando o campo está inválido e foi focado */
 .form-group input.invalid, select.invalid {
   border-color: #dc2626;
   background-color: #fffafb;
@@ -85,32 +84,28 @@
 .error-msg {
   color: #dc2626;
   font-size: 12px;
-  line-height: 1; /* Evita que o espaçamento entre linhas aumente o container */
+  line-height: 1;
   margin: 0;
 }
 
-
-/* Container do input de senha */
 .password-wrapper {
   position: relative;
   display: flex;
   align-items: center;
 }
 
-/* Faz o input ocupar todo o espaço e dar um respiro no final para o ícone */
 .password-wrapper input {
   width: 100%;
-  padding-right: 45px; /* Espaço para o ícone não ficar em cima do texto */
+  padding-right: 45px;
 }
 
-/* Posicionamento do ícone do olho */
 .toggle-icon {
   position: absolute;
   right: 15px;
   cursor: pointer;
   color: #6b7280;
   font-size: 18px;
-  user-select: none; /* Impede que o usuário selecione o emoji como texto */
+  user-select: none;
   transition: opacity 0.2s;
   display: flex;
   align-items: center;
@@ -123,10 +118,9 @@
 
 .password-wrapper input {
   width: 100%;
-  padding-right: 40px; /* Garante que o texto da senha não encoste no ícone */
+  padding-right: 40px;
 }
 
-/* Garante que o input invalid mantenha a borda vermelha mesmo dentro da wrapper */
 .password-wrapper input.invalid {
   border-color: #dc2626;
 }

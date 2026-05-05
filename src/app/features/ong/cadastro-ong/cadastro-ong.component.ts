@@ -15,7 +15,7 @@ import Swal from 'sweetalert2';
 })
 export class CadastroOngComponent {
 
-  formOng!: FormGroup; // Define o grupo do formulário
+  formOng!: FormGroup;
   isSenhaVisivel: boolean = false;
 
   private router = inject(Router);
@@ -23,9 +23,7 @@ export class CadastroOngComponent {
   private ongService = inject(OngService);
 
 
-  /* Ciclo de vida do Angular: Executa assim que o componente é carregado.*/
   ngOnInit(): void {
-    // Inicializa o formulário com as validações
     this.formOng = this.fb.group({
       nome: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(100), Validators.pattern(/.*\S.*/)]],
       email: ['', [Validators.required, Validators.email, Validators.pattern(/^\S+@\S+\.\S+$/)]],
@@ -38,7 +36,7 @@ export class CadastroOngComponent {
   cadastrar() {
     // 1. Verificação de segurança e feedback visual imediato
     if (this.formOng.invalid) {
-      this.formOng.markAllAsTouched(); // Ativa as mensagens de erro no HTML
+      this.formOng.markAllAsTouched();
       return;
     }
 
@@ -49,7 +47,7 @@ export class CadastroOngComponent {
       nome: formulario.nome.trim(),
       email: formulario.email.trim(),
       razaoSocial: formulario.razaoSocial.trim(),
-      cnpj: formulario.cnpj.replace(/\D/g, '') // Garante apenas números para o Java
+      cnpj: formulario.cnpj.replace(/\D/g, '')
     };
 
     // 3. Envio para o Service
@@ -59,28 +57,25 @@ export class CadastroOngComponent {
           title: 'Sucesso!',
           text: 'ONG cadastrada! Agora você pode fazer login para gerenciar seus projetos.',
           icon: 'success',
-          confirmButtonColor: '#2563eb', // Cor azul que estamos usando
+          confirmButtonColor: '#2563eb',
           confirmButtonText: 'Fazer Login',
         }).then(() => {
           this.formOng.reset();
-          // Redireciona para o painel ou home
           this.router.navigate(['/login'], { queryParams: { email: dadosParaEnvio.email }});
         });
       },
       error: (err) => {
-        console.error('Erro detalhado:', err); // Log para depuração no F12
+        console.error('Erro detalhado:', err);
         let mensagemErro = 'Verifique os dados e tente novamente.';
 
         if (err.status === 409) {
-          // Pega a string direta que você configurou no tratarErro409 do Java
           mensagemErro = typeof err.error === 'string' ? err.error : 'Este e-mail ou CNPJ já está cadastrado.';
         } else if (err.status === 400) {
-          // Se o Java enviar a lista de erros do MethodArgumentNotValidException
-          if (Array.isArray(err.error)) {
-            mensagemErro = err.error.join('\n');
-          } else {
-            mensagemErro = err.error || 'Dados inválidos ou mal formatados.';
-          }
+            if (Array.isArray(err.error)) {
+              mensagemErro = err.error.join('\n');
+            } else {
+              mensagemErro = err.error || 'Dados inválidos ou mal formatados.';
+            }
         } else if (err.status === 0) {
           mensagemErro = 'Servidor offline. Verifique se o Backend está rodando.';
         }

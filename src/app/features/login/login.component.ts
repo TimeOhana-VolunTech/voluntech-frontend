@@ -32,7 +32,6 @@ export class LoginComponent implements OnInit{
       // Preenche o campo de email automaticamente
       this.loginForm.patchValue({ email: emailDaUrl });
 
-      // Opcional: Já marca como "touched" para o usuário ver que está validado
       this.loginForm.get('email')?.markAsTouched();
     }
   }
@@ -51,7 +50,6 @@ export class LoginComponent implements OnInit{
         }
         // 2. Se for Voluntário, verifica se precisa de Onboarding
         else {
-          // MUDANÇA AQUI: Agora verificamos a flag booleana que vem do banco
           if (user.onboardingCompleto === false) {
             this.router.navigate(['/onboarding-voluntario']);
           } else {
