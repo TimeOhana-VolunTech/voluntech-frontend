@@ -21,9 +21,9 @@ export class PerfilVoluntarioComponent implements OnInit {
   perfilForm!: FormGroup;
   usuarioLogado: any;
 
-  // Listas para os Chips (podem ser movidas para um arquivo de constantes depois)
-  listaHabilidades = ['Cozinha', 'Programação', 'Artes', 'Ensino', 'Saúde', 'Logística'];
-  listaCausas = ['Meio Ambiente', 'Educação', 'Proteção Animal', 'Idosos', 'Crianças'];
+
+  listaHabilidades = ['Comunicação', 'Design', 'Cozinha', 'Programação', 'Artes', 'Ensino', 'Saúde', 'Logística'];
+  listaCausas = ['Educação', 'Meio Ambiente', 'Saúde', 'Assistência Social', 'Tecnologia'];
   listaDisponibilidade = ['Manhã', 'Tarde', 'Noite', 'Finais de Semana', 'Remoto'];
 
   ngOnInit() {
