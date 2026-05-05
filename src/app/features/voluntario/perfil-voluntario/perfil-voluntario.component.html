@@ -1,0 +1,122 @@
+<div class="perfil-container">
+
+  <app-header></app-header>
+
+  <div class="perfil-card">
+    <header class="perfil-header">
+      <h1>Meu Perfil</h1>
+      <p>Gerencie suas informações e preferências</p>
+    </header>
+
+    <form [formGroup]="perfilForm" (ngSubmit)="salvarAlteracoes()">
+
+      <section class="form-section">
+        <h3>Dados Básicos</h3>
+        <div class="grid-inputs">
+
+          <!-- Nome -->
+          <div class="form-group">
+            <label>Nome Completo</label>
+            <input type="text" formControlName="nome">
+            <div class="error-container">
+              @if (perfilForm.get('nome')?.touched && perfilForm.get('nome')?.invalid) {
+                <small class="error-msg" *ngIf="perfilForm.get('nome')?.errors?.['required']">O nome é obrigatório.</small>
+                <small class="error-msg" *ngIf="perfilForm.get('nome')?.errors?.['minlength']">Mínimo de 3 caracteres.</small>
+                <small class="error-msg" *ngIf="perfilForm.get('nome')?.errors?.['maxlength']">Máximo de 100 caracteres.</small>
+                <small class="error-msg" *ngIf="perfilForm.get('nome')?.errors?.['pattern']">Nome inválido.</small>
+              }
+            </div>
+          </div>
+
+          <!-- E-mail -->
+          <div class="form-group">
+            <label>E-mail</label>
+            <input type="email" formControlName="email">
+            <div class="error-container">
+              @if (perfilForm.get('email')?.touched && perfilForm.get('email')?.invalid) {
+                <small class="error-msg" *ngIf="perfilForm.get('email')?.errors?.['required']">O e-mail é obrigatório.</small>
+                <small class="error-msg" *ngIf="perfilForm.get('email')?.errors?.['email'] || perfilForm.get('email')?.errors?.['pattern']">E-mail inválido.</small>
+                <small class="error-msg" *ngIf="perfilForm.get('email')?.errors?.['pattern']">O email não pode conter espaços.</small>
+              }
+            </div>
+          </div>
+
+          <!-- Telefone -->
+          <div class="form-group">
+            <label>WhatsApp / Telefone</label>
+            <input type="text" formControlName="telefone" placeholder="Ex: 11999998888">
+            <div class="error-container">
+              @if (perfilForm.get('telefone')?.touched && perfilForm.get('telefone')?.invalid) {
+                <small class="error-msg" *ngIf="perfilForm.get('telefone')?.errors?.['required']">O telefone é obrigatório.</small>
+                <small class="error-msg" *ngIf="perfilForm.get('telefone')?.errors?.['pattern']">Informe um telefone válido (10 ou 11 dígitos).</small>
+              }
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="form-section">
+        <h3>Sobre Você</h3>
+        <div class="form-group">
+          <label>Bio / Resumo Profissional</label>
+          <textarea formControlName="bio" rows="4" placeholder="Conte um pouco sobre você..."></textarea>
+          <div class="error-container">
+            @if (perfilForm.get('bio')?.touched && perfilForm.get('bio')?.invalid) {
+              <small class="error-msg" *ngIf="perfilForm.get('bio')?.errors?.['minlength']">A bio deve ter pelo menos 20 caracteres.</small>
+              <small class="error-msg" *ngIf="perfilForm.get('bio')?.errors?.['maxlength']">Limite de 500 caracteres excedido.</small>
+            }
+          </div>
+        </div>
+      </section>
+
+      <section class="form-section">
+        <h3>Preferências e Disponibilidade</h3>
+
+        <label class="sub-label">Habilidades</label>
+        <div class="chip-grid">
+          <button type="button" *ngFor="let h of listaHabilidades"
+            [class.active]="perfilForm.get('habilidades')?.value.includes(h)"
+            (click)="toggleItem('habilidades', h)">{{ h }}</button>
+        </div>
+        <div class="error-container">
+          @if (perfilForm.get('habilidades')?.touched && perfilForm.get('habilidades')?.invalid) {
+            <small class="error-msg">Selecione pelo menos uma habilidade.</small>
+          }
+        </div>
+
+        <label class="sub-label">Causas</label>
+        <div class="chip-grid">
+          <button type="button" *ngFor="let c of listaCausas"
+            [class.active]="perfilForm.get('causas')?.value.includes(c)"
+            (click)="toggleItem('causas', c)">{{ c }}</button>
+        </div>
+        <div class="error-container">
+          @if (perfilForm.get('causas')?.touched && perfilForm.get('causas')?.invalid) {
+            <small class="error-msg">Selecione pelo menos uma causa de interesse.</small>
+          }
+        </div>
+
+        <label class="sub-label">Disponibilidade</label>
+        <div class="chip-grid">
+          <button type="button" *ngFor="let d of listaDisponibilidade"
+            [class.active]="perfilForm.get('disponibilidades')?.value.includes(d)"
+            (click)="toggleItem('disponibilidades', d)">{{ d }}</button>
+        </div>
+        <div class="error-container">
+          @if (perfilForm.get('disponibilidades')?.touched && perfilForm.get('disponibilidades')?.invalid) {
+            <small class="error-msg">Informe ao menos um período de disponibilidade.</small>
+          }
+        </div>
+      </section>
+
+      <div class="form-actions">
+        <button type="button" class="btn-cancelar" (click)="voltar()">
+          Cancelar
+        </button>
+        <button type="submit" class="btn-save">
+          Salvar Alterações
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

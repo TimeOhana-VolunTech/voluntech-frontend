@@ -1,4 +1,3 @@
-/* Importando a base da ONG */
 .dashboard-container {
   display: block;
   min-height: 100vh;
@@ -15,7 +14,6 @@
   box-sizing: border-box;
 }
 
-/* Reutilizando Welcome Section da ONG */
 .welcome-section {
   display: flex;
   justify-content: space-between;
@@ -27,11 +25,35 @@
   box-shadow: 0 4px 6px rgba(0,0,0,0.05);
 }
 
-.welcome-text h1 { margin: 0; color: #333; }
-.welcome-text p { margin: 0.5rem 0 0 0; color: #666; }
+.welcome-text h1 {
+  margin: 0;
+  color: #333;
+}
 
+.welcome-text p {
+  margin: 0.5rem 0 0 0;
+  color: #666;
+}
 
-/* Nova seção de filtros integrada ao estilo */
+.btn-perfil-home {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0.8rem 1.5rem;
+  background-color: white;
+  color: #2e7d32;
+  border: 2px solid #2e7d32;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-perfil-home:hover {
+  background-color: #e8f5e9;
+  transform: translateY(-2px);
+}
+
 .filtros-dashboard {
   display: flex;
   gap: 1rem;
@@ -42,7 +64,7 @@
 
 .busca-wrapper {
   position: relative;
-  flex: 3; /* Aumenta a proporção da busca, mas mantém limites */
+  flex: 3;
   min-width: 280px;
 }
 
@@ -61,7 +83,7 @@
   border: 1px solid #ddd;
   outline: none;
   font-size: 1rem;
-  box-sizing: border-box; /* Garante que o padding não ultrapasse a largura */
+  box-sizing: border-box;
 }
 
 .selects-wrapper {
@@ -94,7 +116,7 @@
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s ease;
-  height: 46px; /* Altura aproximada do select para alinhar */
+  height: 46px;
 }
 
 .btn-limpar-filtros:hover {
@@ -102,7 +124,6 @@
   color: white;
 }
 
-/* Cards */
 .cards-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
@@ -113,7 +134,7 @@
   background: white;
   padding: 1.5rem;
   border-radius: 10px;
-  border-left: 5px solid #2e7d32; /* Cor verde da Voluntech */
+  border-left: 5px solid #2e7d32;
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
   display: flex;
   flex-direction: column;
@@ -128,10 +149,10 @@
 .card-header {
   display: flex;
   justify-content: space-between;
-  align-items: center; /* Alinha o centro da badge com o centro do texto do título */
+  align-items: center;
   gap: 10px;
   width: 100%;
-  margin-bottom: 1rem; /* Dá o espaço que a ONG ocupava antes */
+  margin-bottom: 1rem;
 }
 
 .card h3 {
@@ -157,16 +178,13 @@
   color: #555;
   line-height: 1.5;
   margin: 0.5rem 0 1rem 0;
-
-  /* Mágica do line-clamp */
   display: -webkit-box;
-  -webkit-line-clamp: 2; /* Exibe no máximo 3 linhas */
+  -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-/* Rodapé do Card */
 .card-footer {
   margin-top: auto;
   padding-top: 1rem;
@@ -176,8 +194,18 @@
   align-items: center;
 }
 
-.footer-info { font-size: 0.8rem; color: #777; display: flex; flex-direction: column; gap: 4px; }
-.footer-info i { color: #2e7d32; margin-right: 5px; }
+.footer-info {
+  font-size: 0.8rem;
+  color: #777;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.footer-info i {
+  color: #2e7d32;
+  margin-right: 5px;
+}
 
 .footer-info span {
   display: flex;
@@ -186,11 +214,10 @@
 }
 
 .footer-info i {
-  width: 16px; /* Garante alinhamento vertical dos ícones */
+  width: 16px;
   text-align: center;
 }
 
-/* --- Novo Botão de Detalhes --- */
 .btn-detalhes-texto {
   background-color: #2e7d32;
   color: white;
@@ -210,7 +237,6 @@
 }
 
 /* --- RESPONSIVIDADE --- */
-
 @media (max-width: 1100px) {
   .filtros-dashboard {
     flex-direction: column;
@@ -227,23 +253,52 @@
 }
 
 @media (max-width: 768px) {
+  .welcome-section {
+    flex-direction: column;
+    text-align: center;
+    padding: 1.5rem;
+  }
+
+  .btn-perfil-home {
+    width: 60%;
+    justify-content: center;
+    margin-top: 1rem;
+  }
+
+  .welcome-text h1 {
+    font-size: 1.2rem;
+  }
+
+  .welcome-text p {
+    font-size: 0.8rem;
+  }
+
   .selects-wrapper {
-    flex-wrap: wrap; /* Em telas muito pequenas, os selects quebram linha */
+    flex-wrap: wrap;
   }
 
   .selects-wrapper select,
   .btn-limpar-filtros {
-    flex: 1; /* Ocupam largura igual no celular */
+    flex: 1;
     min-width: 140px;
   }
 
 
   .btn-limpar-filtros {
-    flex: 0 0 50px; /* Mantém o botão menor no mobile */
+    flex: 0 0 50px;
     justify-content: center;
   }
 
   .cards-grid {
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  }
+
+  .card h3 {
+    font-size: 1rem;
+  }
+
+  .status-badge {
+    padding: 5px 12px;
+    font-size: 0.5rem;
   }
 }

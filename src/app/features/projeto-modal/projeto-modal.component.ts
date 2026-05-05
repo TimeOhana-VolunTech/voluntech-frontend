@@ -40,7 +40,7 @@ export class ProjetoModalComponent {
     this.projetoService.alterarStatus(this.projeto.id!, novoStatus).subscribe({
       next: () => {
         this.projeto!.status = novoStatus;
-        this.atualizou.emit(); // Notifica a Home
+        this.atualizou.emit();
         Swal.fire({
           toast: true, position: 'top-end', icon: 'success',
           title: `Projeto ${novoStatus === StatusProjeto.ATIVA ? 'Reativado' : 'Pausado'}`,
@@ -64,7 +64,7 @@ export class ProjetoModalComponent {
       if (result.isConfirmed) {
         this.projetoService.excluir(this.projeto!.id!).subscribe({
           next: () => {
-            this.atualizou.emit(); // Notifica a Home que o projeto sumiu
+            this.atualizou.emit();
             this.fechar();
             Swal.fire('Deletado!', 'O projeto foi removido.', 'success');
           }
@@ -73,7 +73,6 @@ export class ProjetoModalComponent {
     });
   }
 
-  // Retorna uma imagem temática baseada na categoria
   getImagemProjeto(): string {
 
     const imagemPadrao = 'https://picsum.photos/id/1/800/400';
@@ -90,6 +89,5 @@ export class ProjetoModalComponent {
       'ASSISTENCIA_SOCIAL': 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=800'
     };
 
-    // Caso não tenha categoria ou a categoria não esteja no mapa, retorna uma genérica
     return imagens[this.projeto.categoria] || imagemPadrao;  }
 }

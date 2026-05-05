@@ -24,7 +24,6 @@ export class HeaderComponent implements OnInit {
     this.router.navigate(['/login']);
   }
 
-  // Método opcional caso queira clicar no logo e voltar para a home correta
   irParaHome(): void {
     const usuario = this.authService.getUsuarioAtual();
     if (usuario?.cnpj) {

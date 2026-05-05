@@ -36,10 +36,8 @@ export class HomeVoluntarioComponent implements OnInit {
     const dados = this.authService.getUsuarioAtual();
     this.nomeVoluntario = dados?.nome || 'Voluntário';
 
-    // 1. Carrega a lista inicial (H08)
     this.carregarProjetos();
 
-    // 2. Configura a busca com debounce (H11)
     this.filtroBusca.valueChanges.pipe(
       debounceTime(400),
       distinctUntilChanged()
@@ -74,11 +72,15 @@ export class HomeVoluntarioComponent implements OnInit {
     this.carregarProjetos();
   }
 
+  irParaPerfil() {
+    this.router.navigate(['/perfil-voluntario']);
+  }
+
   verDetalhes(projeto: Projeto) {
-    this.projetoSelecionado = projeto; // Abre o modal
+    this.projetoSelecionado = projeto;
   }
 
   fecharModal() {
-    this.projetoSelecionado = null; // Fecha o modal
+    this.projetoSelecionado = null;
   }
 }

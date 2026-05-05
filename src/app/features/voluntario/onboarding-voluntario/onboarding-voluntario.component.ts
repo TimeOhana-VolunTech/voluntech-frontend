@@ -41,7 +41,6 @@ export class OnboardingVoluntarioComponent implements OnInit {
     this.usuarioAtual = this.authService.getUsuarioAtual();
   }
 
-  // Lógica para marcar/desmarcar itens nas listas
   toggleItem(lista: 'habilidades' | 'causas' | 'disponibilidades', item: string) {
     const atual = this.onboardingForm.get(lista)?.value as string[];
     if (atual.includes(item)) {
@@ -53,7 +52,6 @@ export class OnboardingVoluntarioComponent implements OnInit {
 
   salvarPerfil() {
     if (this.onboardingForm.invalid) {
-      // Marca todos os campos como tocados para disparar as mensagens de erro no HTML
       this.onboardingForm.markAllAsTouched();
 
     }
@@ -63,7 +61,7 @@ export class OnboardingVoluntarioComponent implements OnInit {
         nome: this.usuarioAtual.nome,
         email: this.usuarioAtual.email,
         ...this.onboardingForm.value,
-        onboardingCompleto: true // <-- Adicione esta linha
+        onboardingCompleto: true
       };
 
       this.voluntarioService.atualizarPerfil(this.usuarioAtual.id, dadosParaAtualizar).subscribe({
@@ -88,11 +86,15 @@ export class OnboardingVoluntarioComponent implements OnInit {
       cancelButtonText: 'Cancelar'
     }).then((result) => {
       if (result.isConfirmed) {
-        // Envia para o servidor que o Onboarding foi concluído (mesmo sem dados extras)
         const dadosParaAtualizar = {
           nome: this.usuarioAtual.nome,
           email: this.usuarioAtual.email,
-          onboardingCompleto: true // <-- Crucial para parar o loop
+          telefone: '',
+          habilidades: [],
+          causas: [],
+          disponibilidades: [],
+          bio: '',
+          onboardingCompleto: true
         };
 
         this.voluntarioService.atualizarPerfil(this.usuarioAtual.id, dadosParaAtualizar).subscribe({

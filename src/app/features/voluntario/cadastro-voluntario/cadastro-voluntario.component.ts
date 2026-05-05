@@ -26,7 +26,6 @@ export class CadastroVoluntarioComponent {
     this.formVoluntario = this.fb.group({
       nome: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(100), Validators.pattern(/.*\S.*/)]],
       email: ['', [Validators.required, Validators.email, Validators.pattern(/^\S+@\S+\.\S+$/)]],
-      // Validamos o tamanho com a máscara (14 caracteres: 000.000.000-00)
       cpf: ['', [Validators.required, Validators.minLength(14)]],
       senha: ['', [ Validators.required, Validators.minLength(6), Validators.maxLength(12), Validators.pattern(/^\S+$/) ]]
     });
@@ -34,22 +33,19 @@ export class CadastroVoluntarioComponent {
 
 
   cadastrar() {
-    // 1. Verificação de segurança: marca campos se o usuário tentar enviar vazio
     if (this.formVoluntario.invalid) {
       this.formVoluntario.markAllAsTouched();
       return;
     }
 
-    // 2. Preparação dos dados: trim e limpeza de máscara
     const formulario = this.formVoluntario.getRawValue();
     const dadosParaEnvio = {
       ...formulario,
       nome: formulario.nome.trim(),
       email: formulario.email.trim(),
-      cpf: formulario.cpf.replace(/\D/g, '') // Envia apenas os 11 números para o Java
+      cpf: formulario.cpf.replace(/\D/g, '')
     };
 
-    // 3. Chamada ao serviço com tratamento refinado
     this.service.cadastrar(dadosParaEnvio).subscribe({
       next: (voluntarioCadastrado) => {
         Swal.fire({

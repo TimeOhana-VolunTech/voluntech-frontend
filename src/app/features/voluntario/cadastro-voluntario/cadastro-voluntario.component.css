@@ -1,11 +1,10 @@
-/* Container principal que centraliza o card */
 .container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;       /* Altura mínima da tela, mas permite crescer */
-  overflow-y: auto;        /* Permite scroll vertical se necessário */
+  min-height: 100vh;
+  overflow-y: auto;
   height: auto;
   padding: 40px 20px;
   font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
@@ -13,7 +12,6 @@
   box-sizing: border-box;
 }
 
-/* Título VolunTech no topo */
 .main-title {
   font-size: 1rem;
   color: #1a1a1a;
@@ -21,7 +19,6 @@
   margin-bottom: 20px;
 }
 
-/* Card de cadastro */
 .card {
   background: #ffffff;
   max-width: 450px;
@@ -45,7 +42,6 @@
   font-size: 14px;
 }
 
-/* Estrutura dos campos (empilhados verticalmente) */
 .form-group {
   display: flex;
   flex-direction: column;
@@ -89,11 +85,10 @@
 .error-msg {
   color: #dc2626;
   font-size: 12px;
-  line-height: 1; /* Evita que o espaçamento entre linhas aumente o container */
+  line-height: 1;
   margin: 0;
 }
 
-/* Container para alinhar input e ícone */
 .password-wrapper {
   position: relative;
   display: flex;
@@ -107,14 +102,13 @@
   box-sizing: border-box;
 }
 
-/* Estilo do ícone do olho */
 .toggle-icon {
   position: absolute;
   right: 15px;
   cursor: pointer;
   color: #6b7280;
   font-size: 18px;
-  user-select: none; /* Impede que o usuário selecione o emoji como texto */
+  user-select: none;
   transition: opacity 0.2s;
   display: flex;
   align-items: center;
@@ -127,16 +121,14 @@
 
 .password-wrapper input {
   width: 100%;
-  padding-right: 40px; /* Garante que o texto da senha não encoste no ícone */
+  padding-right: 40px;
 }
 
-/* Mantém a borda vermelha no wrapper quando inválido */
 .password-wrapper input.invalid {
   border-color: #dc2626;
   background-color: #fffafb;
 }
 
-/* Botão de ação principal */
 button[type="submit"] {
   width: 100%;
   padding: 14px;
@@ -160,7 +152,6 @@ button[type="submit"]:disabled {
   cursor: not-allowed;
 }
 
-/* Botão voltar seguindo o estilo da ONG */
 .btn-voltar {
   width: 100%;
   padding: 12px;
@@ -178,13 +169,13 @@ button[type="submit"]:disabled {
   background-color: #f9fafb;
 }
 
-/* --- RESPONSIVIDADE (MEDIA QUERIES) --- */
+/* --- RESPONSIVIDADE --- */
 
 @media (max-width: 480px) {
   .container {
-    justify-content: flex-start; /* Alinha no topo */
+    justify-content: flex-start;
     padding-top: 20px;
-    overflow-y: auto; /* Permite rolar APENAS dentro do container se o celular for pequeno */
+    overflow-y: auto;
     height: auto;
     min-height: 100vh;
   }

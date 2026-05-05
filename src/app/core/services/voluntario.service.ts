@@ -23,4 +23,8 @@ export class VoluntarioService {
     return this.http.put<Voluntario>(`${this.API}/${id}`, dados);
   }
 
+  buscarPorId(id: number): Observable<Voluntario> {
+    return this.http.get<Voluntario>(`${this.API}/${id}`);
+  }
+
 }

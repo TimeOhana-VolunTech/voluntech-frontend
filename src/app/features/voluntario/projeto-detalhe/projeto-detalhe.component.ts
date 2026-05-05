@@ -19,7 +19,6 @@ export class ProjetoDetalheComponent {
   }
 
   candidatar() {
-    // Aqui no futuro chamaremos o serviço de candidatura
     Swal.fire({
       title: 'Confirmar Candidatura?',
       text: `Você está se candidatando para: ${this.projeto?.titulo}`,
