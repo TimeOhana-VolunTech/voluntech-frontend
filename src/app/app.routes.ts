@@ -9,6 +9,7 @@ import { HomeVoluntarioComponent } from './features/voluntario/home-voluntario/h
 import { ProjetoFormComponent } from './features/ong/projeto-form/projeto-form.component';
 import { OnboardingVoluntarioComponent } from './features/voluntario/onboarding-voluntario/onboarding-voluntario.component';
 import { PerfilVoluntarioComponent } from './features/voluntario/perfil-voluntario/perfil-voluntario.component';
+import { CandidaturasVoluntarioComponent } from './features/voluntario/candidaturas-voluntario/candidaturas-voluntario.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -18,6 +19,7 @@ export const routes: Routes = [
   { path: 'cadastro-voluntario', component: CadastroVoluntarioComponent },
   { path: 'onboarding-voluntario', component: OnboardingVoluntarioComponent, canActivate: [authGuard] },
   { path: 'perfil-voluntario', component: PerfilVoluntarioComponent, canActivate: [authGuard] },
+  { path: 'candidatura-voluntario', component: CandidaturasVoluntarioComponent, canActivate: [authGuard] },
 
   { path: 'home-ong', component: HomeOngComponent, canActivate: [authGuard] },
   { path: 'novo-projeto', component: ProjetoFormComponent, canActivate: [authGuard] },

@@ -8,10 +8,17 @@
         <p>Explore novas oportunidades e encontre o projeto ideal para você.</p>
       </div>
 
-      <button class="btn-perfil-home" (click)="irParaPerfil()">
-        <i class="fa-solid fa-user-gear"></i>
-        Meu Perfil
-      </button>
+      <div class="header-actions">
+        <button class="btn-candidaturas-home" (click)="irParaCandidaturas()">
+          <i class="fa-solid fa-handshake-angle"></i>
+          Minhas Inscrições
+        </button>
+
+        <button class="btn-perfil-home" (click)="irParaPerfil()">
+          <i class="fa-solid fa-user-gear"></i>
+          Meu Perfil
+        </button>
+      </div>
     </div>
 
     <section class="filtros-dashboard">
@@ -51,7 +58,11 @@
       <h2>Oportunidades Disponíveis</h2>
 
       <div class="cards-grid" *ngIf="projetos.length > 0; else emptyState">
-        <div class="card" *ngFor="let p of projetos" (click)="verDetalhes(p)">
+        <div class="card" *ngFor="let p of projetos" (click)="verDetalhes(p)" [ngClass]="{'projeto-inscrito': p.jaInscrito}">
+          <div class="inscrito-overlay" *ngIf="p.jaInscrito">
+            <i class="fa-solid fa-check-circle"></i> Inscrito
+          </div>
+
           <div class="card-header">
             <h3>{{ p.titulo }}</h3>
             <span class="status-badge">
@@ -72,7 +83,7 @@
 
             <div class="card-actions">
               <button class="btn-detalhes-texto">
-                Detalhes
+                {{ p.jaInscrito ? 'Ver Inscrição' : 'Detalhes' }}
               </button>
             </div>
           </div>
@@ -92,5 +103,6 @@
 <app-projeto-detalhe
   *ngIf="projetoSelecionado"
   [projeto]="projetoSelecionado"
+  [mostrarBotaoCandidatar]="!projetoSelecionado.jaInscrito"
   (close)="fecharModal()">
 </app-projeto-detalhe>

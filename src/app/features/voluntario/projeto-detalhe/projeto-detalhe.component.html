@@ -32,9 +32,14 @@
         </div>
 
         <div class="modal-footer">
-          <button class="btn-candidatar" (click)="candidatar()">
+          <button *ngIf="mostrarBotaoCandidatar" class="btn-candidatar" (click)="candidatar()" [disabled]="!projeto">
             Quero me Candidatar
           </button>
+
+          <div *ngIf="!mostrarBotaoCandidatar" class="status-inscrito">
+            <i class="fa-solid fa-circle-check"></i>
+            <span>Você já está inscrito nesta oportunidade!</span>
+          </div>
         </div>
       </div>
     </div>

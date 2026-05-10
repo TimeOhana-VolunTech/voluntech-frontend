@@ -35,6 +35,30 @@
   color: #666;
 }
 
+.header-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.btn-candidaturas-home {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0.8rem 1.5rem;
+  background-color: #2e7d32;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-candidaturas-home:hover {
+  background-color: #1b5e20;
+  transform: translateY(-2px);
+}
+
 .btn-perfil-home {
   display: flex;
   align-items: center;
@@ -131,6 +155,7 @@
 }
 
 .card {
+  position: relative;
   background: white;
   padding: 1.5rem;
   border-radius: 10px;
@@ -144,6 +169,28 @@
 
 .card:hover {
   transform: translateY(-5px);
+}
+
+.card.projeto-inscrito {
+  border-left-color: #94a3b8; /* Cor cinza para diferenciar */
+  opacity: 0.85;
+  background-color: #f8fafc;
+}
+
+.inscrito-overlay {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: #2e7d32;
+  color: white;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 0.7rem;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  z-index: 1;
 }
 
 .card-header {
@@ -257,6 +304,12 @@
     flex-direction: column;
     text-align: center;
     padding: 1.5rem;
+  }
+
+  .header-actions {
+    flex-direction: column;
+    width: 80%;
+    gap: 10px;
   }
 
   .btn-perfil-home {
