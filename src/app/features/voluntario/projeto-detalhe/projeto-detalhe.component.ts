@@ -1,7 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import { Projeto } from '../../../core/models/projeto.model';
 import Swal from 'sweetalert2';
+import { ProjetoService } from '../../../core/services/projeto.service';
+import { AuthService } from '../../../core/services/auth.service';
 
 @Component({
   selector: 'app-projeto-detalhe',
@@ -12,16 +14,27 @@ import Swal from 'sweetalert2';
 })
 export class ProjetoDetalheComponent {
   @Input() projeto: Projeto | null = null;
+  @Input() mostrarBotaoCandidatar: boolean = true;
   @Output() close = new EventEmitter<void>();
+
+  private projetoService = inject(ProjetoService);
+  private authService = inject(AuthService);
 
   fechar() {
     this.close.emit();
   }
 
   candidatar() {
+    const usuario = this.authService.getUsuarioAtual();
+
+    if (!usuario || !this.projeto?.id) {
+      Swal.fire('Erro', 'Você precisa estar logado para se candidatar.', 'error');
+      return;
+    }
+
     Swal.fire({
       title: 'Confirmar Candidatura?',
-      text: `Você está se candidatando para: ${this.projeto?.titulo}`,
+      text: `Você está se candidatando para: ${this.projeto.titulo}`,
       icon: 'question',
       showCancelButton: true,
       confirmButtonColor: '#2e7d32',
@@ -30,12 +43,22 @@ export class ProjetoDetalheComponent {
       cancelButtonText: 'Cancelar'
     }).then((result) => {
       if (result.isConfirmed) {
-        Swal.fire(
-          'Inscrição Enviada!',
-          'A ONG receberá seu perfil e entrará em contato por e-mail.',
-          'success'
-        );
-        this.fechar();
+
+        this.projetoService.candidatar(this.projeto!.id!, usuario.id).subscribe({
+          next: () => {
+            Swal.fire(
+              'Inscrição Enviada!',
+              'A ONG receberá seu perfil e entrará em contato.',
+              'success'
+            );
+            this.fechar();
+          },
+          error: (err) => {
+            // Trata o erro de candidatura duplicada ou outros
+            const mensagem = err.error || 'Não foi possível realizar sua inscrição.';
+            Swal.fire('Ops!', mensagem, 'warning');
+          }
+        });
       }
     });
   }

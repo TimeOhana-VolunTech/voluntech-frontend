@@ -113,6 +113,24 @@
   box-shadow: 0 4px 12px rgba(46, 125, 50, 0.3);
 }
 
+.status-inscrito {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  padding: 1rem;
+  background-color: #e8f5e9;
+  color: #2e7d32;
+  border-radius: 8px;
+  font-weight: 600;
+  border: 1px solid #c8e6c9;
+}
+
+.status-inscrito i {
+  font-size: 1.2rem;
+}
+
 @media (max-width: 600px) {
   .detalhes-grid { grid-template-columns: 1fr; gap: 15px; }
   .projeto-info { padding: 1.5rem; }

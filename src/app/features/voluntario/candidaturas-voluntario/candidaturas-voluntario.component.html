@@ -1,0 +1,48 @@
+<div class="minhas-candidaturas-container">
+  <app-header></app-header>
+
+  <main class="content">
+    <div class="header-page">
+      <button class="btn-voltar" (click)="voltar()">
+        <i class="fa-solid fa-arrow-left"></i> Voltar
+      </button>
+      <h1>Minhas Inscrições</h1>
+    </div>
+
+    <div class="grid-candidaturas" *ngIf="candidaturas.length > 0; else emptyState">
+      <div class="card-candidatura" *ngFor="let c of candidaturas" (click)="verDetalhes(c)"
+        [class.projeto-encerrado]="c.statusProjeto === 'FINALIZADA'">
+        <div class="card-info">
+          <div class="badges-row">
+            <!-- Status da Inscrição (Pendente/Aprovado) -->
+            <span class="status-badge" [attr.data-status]="c.status">
+              {{ c.status }}
+            </span>
+            <!-- NOVO: Aviso se o projeto já encerrou -->
+            <span *ngIf="c.statusProjeto === 'FINALIZADA'" class="badge-projeto-encerrado">
+              PROJETO ENCERRADO
+            </span>
+          </div>
+          <h3>{{ c.projetoTitulo }}</h3>
+          <p class="ong-nome"><i class="fa-solid fa-building-ngo"></i> {{ c.nomeOng }}</p>
+          <p class="data"><i class="fa-regular fa-calendar"></i> Inscrito em: {{ c.dataCandidatura | date:'dd/MM/yyyy' }}</p>
+        </div>
+      </div>
+    </div>
+
+    <ng-template #emptyState>
+      <div class="empty-msg">
+        <i class="fa-solid fa-folder-open"></i>
+        <p>Você ainda não se candidatou a nenhum projeto.</p>
+        <button (click)="voltar()" class="btn-explorar">Explorar Oportunidades</button>
+      </div>
+    </ng-template>
+  </main>
+</div>
+
+<app-projeto-detalhe
+  *ngIf="projetoSelecionado"
+  [projeto]="projetoSelecionado"
+  [mostrarBotaoCandidatar]="false"
+  (close)="fecharModal()">
+</app-projeto-detalhe>

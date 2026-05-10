@@ -53,4 +53,11 @@ export class ProjetoService {
 
     return this.http.get<Projeto[]>(`${this.API}/explorar`, { params });
   }
+
+  candidatar(projetoId: number, voluntarioId: number): Observable<string> {
+    return this.http.post(`${this.API}/${projetoId}/candidatar`, null, {
+      params: { voluntarioId: voluntarioId.toString() },
+      responseType: 'text'
+    });
+  }
 }

@@ -146,6 +146,18 @@
   color: #2e7d32;
 }
 
+.alerta-prazo {
+  color: #e63946; /* Vermelho vibrante */
+  font-weight: bold;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { opacity: 1; }
+  50% { opacity: 0.6; }
+  100% { opacity: 1; }
+}
+
 .card-actions {
   display: flex;
   gap: 8px;
@@ -195,6 +207,71 @@
   border-radius: 12px;
   color: #888;
 }
+
+/* Container das Abas de Navegação */
+.tabs-container {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 2rem;
+  border-bottom: 2px solid #e0e0e0;
+  padding-bottom: 0px;
+}
+
+.tabs-container button {
+  background: none;
+  border: none;
+  padding: 12px 24px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #777;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-bottom: 3px solid transparent;
+  border-radius: 8px 8px 0 0;
+}
+
+.tabs-container button:hover {
+  background-color: #f0f0f0;
+  color: #333;
+}
+
+.tabs-container button.active {
+  color: #2e7d32;
+  border-bottom: 3px solid #2e7d32;
+  background-color: #e8f5e9;
+}
+
+/* Badge para o status Finalizado */
+.status-badge.status-finalizada {
+  background: #f1f5f9;
+  color: #475569;
+}
+
+/* Alteração visual no Card quando o projeto está finalizado */
+.card-finalizado {
+  border-left-color: #94a3b8 !important; /* Cor cinza para indicar encerramento */
+  background-color: #fcfcfc;
+  opacity: 0.85;
+}
+
+.card-finalizado h3 {
+  color: #475569; /* Título mais discreto */
+}
+
+.card-finalizado:hover {
+  transform: translateY(-2px); /* Menos impacto no hover para itens históricos */
+}
+
+.alerta-prazo {
+  color: #e63946 !important;
+  font-weight: bold;
+}
+
+.alerta-prazo i {
+  color: #e63946 !important;
+  margin-left: 5px;
+}
+
 
 /* --- RESPONSIVIDADE --- */
 @media (max-width: 768px) {

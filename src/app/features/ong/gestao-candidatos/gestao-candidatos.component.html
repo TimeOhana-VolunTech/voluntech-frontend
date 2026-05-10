@@ -1,0 +1,55 @@
+<div class="modal-overlay" (click)="fechar.emit()">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <div class="modal-header">
+      <h2><i class="fa-solid fa-users"></i> Voluntários Interessados</h2>
+      <button class="btn-close" (click)="fechar.emit()">&times;</button>
+    </div>
+
+    <div class="modal-body">
+      <div class="alert-exclusao" *ngIf="candidatos.length > 0 && todosRecusados()">
+        <i class="fa-solid fa-circle-check"></i>
+        <p>Todos os voluntários foram recusados. Agora você pode <strong>excluir este projeto</strong> permanentemente na tela inicial.</p>
+      </div>
+
+      <div *ngIf="candidatos.length === 0" class="empty-state">
+        <i class="fa-solid fa-user-slash"></i>
+        <p>Ainda não há inscritos para este projeto.</p>
+      </div>
+
+      <div class="candidatos-list" *ngIf="candidatos.length > 0">
+        <div class="card-candidato" *ngFor="let c of candidatos" [ngClass]="'status-' + c.status.toLowerCase()">
+
+          <div class="candidato-header">
+            <div class="info-principal">
+              <h3>{{ c.nome }}</h3>
+              <span class="badge-status">{{ c.status }}</span>
+            </div>
+            <button class="btn-whatsapp" (click)="abrirWhatsapp(c.telefone, c.nome)" title="Chamar no WhatsApp">
+              <i class="fa-brands fa-whatsapp"></i> Contato
+            </button>
+          </div>
+
+          <div class="candidato-detalhes">
+            <p class="bio">"{{ c.bio || 'Sem biografia informada.' }}"</p>
+
+            <div class="habilidades-container">
+              <span class="label">Habilidades:</span>
+              <div class="habilidades-list">
+                <span class="badge-habilidade" *ngFor="let h of c.habilidades">{{ h }}</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="candidato-actions" *ngIf="c.status === 'PENDENTE'">
+            <button class="btn-recusar" (click)="mudarStatus(c, 'RECUSADO')">
+              <i class="fa-solid fa-xmark"></i> Recusar
+            </button>
+            <button class="btn-aprovar" (click)="mudarStatus(c, 'APROVADO')">
+              <i class="fa-solid fa-check"></i> Aprovar Voluntário
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

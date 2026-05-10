@@ -1,9 +1,9 @@
 import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
-import { Projeto } from '../../core/models/projeto.model';
+import { Projeto } from '../../../core/models/projeto.model';
 import { CommonModule } from '@angular/common';
-import { ProjetoService } from '../../core/services/projeto.service';
+import { ProjetoService } from '../../../core/services/projeto.service';
 import { Router } from '@angular/router';
-import { StatusProjeto } from '../../core/models/enums/status-projeto.enum';
+import { StatusProjeto } from '../../../core/models/enums/status-projeto.enum';
 import Swal from 'sweetalert2';
 
 @Component({

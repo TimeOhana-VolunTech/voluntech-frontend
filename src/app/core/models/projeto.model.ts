@@ -6,10 +6,11 @@ export interface Projeto {
   id?: number;
   titulo: string;
   descricao: string;
-  prazo: Date | string; // O Back-end envia string (ISO), mas tratamos como Date no Front
+  prazo: Date | string;
   status?: StatusProjeto;
   modalidade?: Modalidade;
   categoria?: Categoria;
   ongId: number;
   nomeOng?: string;
+  jaInscrito?: boolean;
 }
