@@ -1,4 +1,29 @@
 <header class="header">
   <span class="logo" (click)="irParaHome()" style="cursor: pointer;">VolunTech</span>
-  <button class="btn-sair" (click)="sair()">Sair</button>
+
+  <div class="header-right">
+    <div class="notificacao-container">
+      <button class="btn-sino" (click)="toggleNotificacoes()">
+        <i class="fa-solid fa-bell"></i>
+        <span class="badge" *ngIf="contadorPendentes > 0">{{ contadorPendentes }}</span>
+      </button>
+
+      <div class="notificacao-dropdown" *ngIf="exibirMenuNotif">
+        <div class="notif-header">Notificações</div>
+        <div class="notif-lista">
+          <div *ngIf="notificacoes.length === 0" class="notif-vazia">Nenhuma notificação.</div>
+
+          <div class="notif-item"
+               *ngFor="let n of notificacoes"
+               [class.nao-lida]="!n.lida"
+               (click)="lerNotificacao(n)">
+            <p>{{ n.mensagem }}</p>
+            <span>{{ n.dataCriacao | date:'dd/MM HH:mm' }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <button class="btn-sair" (click)="sair()">Sair</button>
+  </div>
 </header>
