@@ -13,4 +13,5 @@ export interface Projeto {
   ongId: number;
   nomeOng?: string;
   jaInscrito?: boolean;
+  totalCandidatosPendentes: number;
 }

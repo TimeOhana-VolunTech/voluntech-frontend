@@ -5,24 +5,24 @@
     <div class="welcome-section">
       <div class="welcome-text">
         <h1>Olá, {{ nomeUsuario }}!</h1>
-        <p>Gerencie seus projetos e acompanhe o impacto da sua ONG.</p>
+        <p>Gerencie suas vagas e acompanhe o impacto da sua ONG.</p>
       </div>
       <button class="btn-novo-projeto" (click)="irParaNovoProjeto()">
-        + Novo Projeto
+        + Nova Vaga
       </button>
     </div>
 
     <section class="projetos-lista">
       <div class="tabs-container">
         <button [class.active]="abaAtiva === 'ativos'" (click)="setAba('ativos')">
-          Projetos Ativos
+          Vagas Ativos
         </button>
         <button [class.active]="abaAtiva === 'historico'" (click)="setAba('historico')">
-          Histórico: Pausados / Finalizados
+           Pausados / Finalizados
         </button>
       </div>
 
-      <h2>{{ abaAtiva === 'ativos' ? 'Meus Projetos Cadastrados' : 'Projetos Encerrados' }}</h2>
+      <h2>{{ abaAtiva === 'ativos' ? 'Minhas Vagas Cadastrados' : 'Vagas Encerradas' }}</h2>
 
       <div class="cards-grid" *ngIf="projetosFiltrados.length > 0; else emptyState">
         <div class="card"
@@ -62,6 +62,10 @@
             <div class="card-actions">
               <button class="btn-icon btn-users" (click)="$event.stopPropagation(); abrirCandidatos(p.id!)" title="Candidatos">
                 <i class="fa-solid fa-users-viewfinder"></i>
+
+                <span class="badge-alerta" *ngIf="p.totalCandidatosPendentes > 0">
+                  {{ p.totalCandidatosPendentes }}
+                </span>
               </button>
 
               <ng-container *ngIf="p.status !== 'FINALIZADA'">
@@ -92,7 +96,7 @@
 
       <ng-template #emptyState>
         <div class="empty-msg">
-          <p>{{ abaAtiva === 'ativos' ? 'Você ainda não possui projetos ativos.' : 'Não há projetos no seu histórico.' }}</p>
+          <p>{{ abaAtiva === 'ativos' ? 'Você ainda não possui vagas ativas.' : 'Não há vagas no seu histórico.' }}</p>
         </div>
       </ng-template>
     </section>

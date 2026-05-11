@@ -149,13 +149,6 @@
 .alerta-prazo {
   color: #e63946; /* Vermelho vibrante */
   font-weight: bold;
-  animation: pulse 2s infinite;
-}
-
-@keyframes pulse {
-  0% { opacity: 1; }
-  50% { opacity: 0.6; }
-  100% { opacity: 1; }
 }
 
 .card-actions {
@@ -270,6 +263,27 @@
 .alerta-prazo i {
   color: #e63946 !important;
   margin-left: 5px;
+}
+
+.btn-users {
+  position: relative; /* Necessário para posicionar o badge */
+}
+
+.badge-alerta {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background-color: #ff4d4d; /* Vermelho vibrante */
+  color: white;
+  font-size: 10px;
+  font-weight: bold;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
 }
 
 

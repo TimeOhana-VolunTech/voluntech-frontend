@@ -5,11 +5,11 @@
     <form [formGroup]="projetoForm" (ngSubmit)="salvarProjeto()" class="form-projeto">
       <div class="form-header">
         <button type="button" class="btn-voltar" routerLink="/home-ong">← Voltar</button>
-        <h2>{{ isEdicao ? 'Editar Projeto' : 'Criar Novo Projeto' }}</h2>
+        <h2>{{ isEdicao ? 'Editar Vaga' : 'Criar Nova Vaga' }}</h2>
       </div>
 
       <div class="form-group">
-        <label for="titulo">Título do Projeto*</label>
+        <label for="titulo">Título da Vaga*</label>
         <input id="titulo" type="text" formControlName="titulo" placeholder="Ex: Reforço Escolar"
                 [class.invalid]="projetoForm.get('titulo')?.invalid && projetoForm.get('titulo')?.touched">
 
@@ -69,7 +69,7 @@
       </div>
 
       <div class="actions">
-        <button type="submit" class="btn-submit">{{ isEdicao ? 'Atualizar Projeto' : 'Publicar Projeto' }}</button>
+        <button type="submit" class="btn-submit">{{ isEdicao ? 'Atualizar Vaga' : 'Publicar Vaga' }}</button>
       </div>
     </form>
   </div>
