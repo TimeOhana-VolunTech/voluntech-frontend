@@ -125,3 +125,54 @@
 .btn-sair:active {
   transform: translateY(0);
 }
+
+/* --- Responsividade --- */
+
+@media (max-width: 600px) {
+    .header {
+        padding: 0.8rem 4%;
+    }
+
+    .logo {
+        font-size: 1.2rem;
+    }
+
+    .header-right {
+        gap: 12px;
+    }
+
+    /* Ajuste do Dropdown para Mobile */
+    .notificacao-dropdown {
+        position: fixed;
+        top: 60px;
+        right: 10px;
+        left: 10px;
+        width: auto;
+        max-width: none;
+        z-index: 2001;
+    }
+
+    .notif-lista {
+        max-height: 60vh;
+    }
+
+    .notif-item p {
+        font-size: 0.9rem;
+    }
+
+    .btn-sair {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.8rem;
+    }
+}
+
+/* Ajuste para telas muito pequenas (iPhone SE, etc) */
+@media (max-width: 380px) {
+    .logo {
+        font-size: 1.1rem;
+    }
+
+    .header-right {
+        gap: 8px;
+    }
+}

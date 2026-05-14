@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, HostListener, inject, OnInit } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../../core/services/auth.service';
 import { Notificacao, NotificacaoService } from '../../core/services/notificacao.service';
@@ -12,6 +12,8 @@ import { Notificacao, NotificacaoService } from '../../core/services/notificacao
   styleUrl: './header.component.css'
 })
 export class HeaderComponent implements OnInit {
+
+  private eRef = inject(ElementRef);
 
   notificacoes: Notificacao[] = [];
   contadorPendentes = 0;
@@ -58,7 +60,8 @@ export class HeaderComponent implements OnInit {
     });
   }
 
-  toggleNotificacoes() {
+  toggleNotificacoes(event: Event) {
+    event.stopPropagation(); // Impede que o clique no sino feche o menu imediatamente
     this.exibirMenuNotif = !this.exibirMenuNotif;
   }
 
@@ -69,5 +72,17 @@ export class HeaderComponent implements OnInit {
         this.contadorPendentes--;
       });
     }
+  }
+
+  @HostListener('document:click', ['$event'])
+  clickout(event: any) {
+    // Se o menu estiver aberto E o clique foi fora do componente header
+    if (this.exibirMenuNotif && !this.eRef.nativeElement.contains(event.target)) {
+      this.fecharMenu();
+    }
+  }
+
+  fecharMenu() {
+    this.exibirMenuNotif = false;
   }
 }

@@ -33,8 +33,38 @@ export class ProjetoModalComponent {
     }
   }
 
+  // Função auxiliar para validar se o prazo já expirou
+  private isPrazoVencido(prazo: any): boolean {
+    if (!prazo) return true;
+    const dataPrazo = new Date(prazo);
+    dataPrazo.setHours(23, 59, 59, 999); // Final do dia informado
+    return dataPrazo < new Date();
+  }
+
   alternarStatus() {
     if (!this.projeto) return;
+
+    // Se o usuário está tentando ATIVAR o projeto
+    if (this.projeto.status !== StatusProjeto.ATIVA) {
+      if (this.isPrazoVencido(this.projeto.prazo)) {
+        Swal.fire({
+          title: 'Prazo Encerrado',
+          text: 'Não é possível ativar um projeto com o prazo vencido. Atualize a data de inscrição primeiro.',
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#2e7d32',
+          confirmButtonText: 'Editar Prazo',
+          cancelButtonText: 'Voltar'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            this.irParaEditar();
+          }
+        });
+        return; // Bloqueia a execução do serviço de alteração de status
+      }
+    }
+
+    // Fluxo normal caso o prazo esteja OK ou o objetivo seja PAUSAR
     const novoStatus = this.projeto.status === StatusProjeto.ATIVA ? StatusProjeto.PAUSADA : StatusProjeto.ATIVA;
 
     this.projetoService.alterarStatus(this.projeto.id!, novoStatus).subscribe({

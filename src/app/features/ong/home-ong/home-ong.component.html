@@ -106,5 +106,6 @@
 <app-gestao-candidatos
   *ngIf="projetoParaGestao"
   [projetoId]="projetoParaGestao"
+  (statusAlterado)="recarregarLista()"
   (fechar)="fecharGestao()">
 </app-gestao-candidatos>

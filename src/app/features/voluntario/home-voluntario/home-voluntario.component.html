@@ -29,6 +29,14 @@
           [formControl]="filtroBusca"
           placeholder="Buscar por título ou descrição..."
           class="input-busca-dash">
+
+          <button
+            *ngIf="filtroBusca.value"
+            class="btn-clear-search"
+            (click)="limparBusca()"
+            title="Limpar busca">
+            &times;
+          </button>
       </div>
 
       <div class="selects-wrapper">
@@ -59,8 +67,12 @@
 
       <div class="cards-grid" *ngIf="projetos.length > 0; else emptyState">
         <div class="card" *ngFor="let p of projetos" (click)="verDetalhes(p)" [ngClass]="{'projeto-inscrito': p.jaInscrito}">
-          <div class="inscrito-overlay" *ngIf="p.jaInscrito">
-            <i class="fa-solid fa-check-circle"></i> Inscrito
+          <div class="inscrito-overlay" *ngIf="p.jaInscrito" [ngClass]="p.statusCandidatura?.toLowerCase()">
+            <i [class]="p.statusCandidatura === 'APROVADO' ? 'fa-solid fa-check-double' :
+               p.statusCandidatura === 'RECUSADO' ? 'fa-solid fa-circle-xmark' :
+               'fa-solid fa-clock'"></i>
+               {{ p.statusCandidatura === 'PENDENTE' ? 'Pendente' :
+                p.statusCandidatura === 'APROVADO' ? 'Aprovado' : 'Recusado' }}
           </div>
 
           <div class="card-header">

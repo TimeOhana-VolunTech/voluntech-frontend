@@ -53,10 +53,21 @@
   object-fit: cover;
 }
 
-.projeto-info { padding: 2rem; }
-.projeto-info h1 { font-size: 1.5rem; margin: 0.5rem 0; color: #333; }
+.projeto-info {
+  padding: 2rem;
+}
 
-.badge-row { display: flex; gap: 10px; margin-bottom: 0.8rem; }
+.projeto-info h1 {
+  font-size: 1.5rem;
+  margin: 0.5rem 0;
+  color: #333;
+}
+
+.badge-row {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 0.8rem;
+}
 
 .badge {
   padding: 4px 12px;
@@ -65,9 +76,42 @@
   font-weight: bold;
 }
 
-.badge.categoria { background: #e8f5e9; color: #2e7d32; }
+.badge.categoria {
+  background: #e8f5e9;
+  color: #2e7d32;
+}
 
-.ong-nome { color: #666; font-size: 0.95rem; margin-bottom: 1rem; }
+.badge-status {
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 0.7rem;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.badge-status.pendente { background: #fff3e0; color: #ef6c00; border: 1px solid #ffe0b2; }
+.badge-status.aprovado { background: #e8f5e9; color: #2e7d32; border: 1px solid #c8e6c9; }
+.badge-status.recusado { background: #ffebee; color: #c62828; border: 1px solid #ffcdd2; }
+
+.status-banner {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 1rem;
+  border-radius: 8px;
+  width: 100%;
+  font-weight: 500;
+}
+
+.status-banner.pendente { background-color: #fff9c4; color: #856404; }
+.status-banner.aprovado { background-color: #c8e6c9; color: #1b5e20; }
+.status-banner.recusado { background-color: #ffcdd2; color: #b71c1c; }
+
+.ong-nome {
+  color: #666;
+  font-size: 0.95rem;
+  margin-bottom: 1rem;
+}
 
 .detalhes-grid {
   display: grid;

@@ -37,11 +37,14 @@ export class CandidaturasVoluntarioComponent implements OnInit {
   verDetalhes(candidatura: Candidatura) {
     this.projetoService.buscarPorId(candidatura.projetoId).subscribe({
       next: (projeto) => {
-        this.projetoSelecionado = projeto;
+        // Aqui está o truque: passamos o status da candidatura para dentro do objeto projeto
+        this.projetoSelecionado = {
+          ...projeto,
+          statusCandidatura: candidatura.status,
+          jaInscrito: true
+        };
       },
-      error: () => {
-        console.error('Erro ao carregar detalhes do projeto');
-      }
+      error: () => console.error('Erro ao carregar detalhes do projeto')
     });
   }
 
