@@ -10,6 +10,11 @@
       <div class="projeto-info">
         <div class="badge-row">
           <span class="badge categoria">{{ projeto.categoria }}</span>
+
+          <span *ngIf="projeto.statusCandidatura"
+                [class]="'badge-status ' + projeto.statusCandidatura.toLowerCase()">
+            {{ projeto.statusCandidatura }}
+          </span>
         </div>
 
         <h1>{{ projeto.titulo }}</h1>
@@ -32,14 +37,37 @@
         </div>
 
         <div class="modal-footer">
-          <button *ngIf="mostrarBotaoCandidatar" class="btn-candidatar" (click)="candidatar()" [disabled]="!projeto">
-            Quero me Candidatar
-          </button>
+          <ng-container *ngIf="projeto.status === 'FINALIZADA'">
+            <div class="status-banner encerrado">
+              <i class="fa-solid fa-hourglass-end"></i>
+              <span>Inscrições encerradas. Este projeto atingiu o prazo limite.</span>
+            </div>
+          </ng-container>
 
-          <div *ngIf="!mostrarBotaoCandidatar" class="status-inscrito">
-            <i class="fa-solid fa-circle-check"></i>
-            <span>Você já está inscrito nesta oportunidade!</span>
-          </div>
+          <ng-container *ngIf="projeto.status !== 'FINALIZADA'">
+
+            <button *ngIf="mostrarBotaoCandidatar"
+                    class="btn-candidatar"
+                    (click)="candidatar()"
+                    [disabled]="!projeto">
+              Quero me Candidatar
+            </button>
+
+            <div *ngIf="!mostrarBotaoCandidatar" class="status-inscrito-container">
+              <div [class]="'status-banner ' + (projeto.statusCandidatura?.toLowerCase() || 'pendente')">
+                <i [class]="projeto.statusCandidatura === 'APROVADO' ? 'fa-solid fa-circle-check' :
+                          projeto.statusCandidatura === 'RECUSADO' ? 'fa-solid fa-circle-xmark' :
+                          'fa-solid fa-clock'"></i>
+
+                <span>
+                  {{ projeto.statusCandidatura === 'APROVADO' ? 'Parabéns! Você foi selecionado para este projeto.' :
+                    projeto.statusCandidatura === 'RECUSADO' ? 'Infelizmente você não foi selecionado desta vez.' :
+                    'Sua candidatura está em análise pela ONG.' }}
+                </span>
+              </div>
+            </div>
+
+          </ng-container>
         </div>
       </div>
     </div>

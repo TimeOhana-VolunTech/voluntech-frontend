@@ -1,22 +1,45 @@
 <div class="home-container">
-  <h1>Bem-vindo ao VolunTech</h1>
-  <p>Escolha como você deseja ajudar hoje:</p>
+  <section class="hero-section">
+    <div class="hero-image"></div>
+    <div class="overlay"></div>
 
-  <div class="button-group">
-    <div class="card" (click)="navegarParaVoluntario()">
-      <h2>Sou Voluntário</h2>
-      <p>Quero encontrar projetos e doar meu tempo.</p>
-      <button>Cadastrar</button>
+    <div class="hero-content">
+      <h1 class="hero-name">VolunTech</h1>
+      <p class="hero-subtitle">Conectando Propósitos</p>
+      <div class="divider"></div>
+      <p class="hero-text">Transforme o mundo através do voluntariado.</p>
+    </div>
+  </section>
+
+  <main class="selection-content">
+    <h2 class="section-title">Como você deseja ajudar hoje?</h2>
+
+    <div class="button-group">
+      <div class="card card-voluntario" (click)="navegarParaVoluntario()">
+        <div class="card-icon">
+          <i class="fa-solid fa-hand-holding-heart"></i>
+        </div>
+        <div class="card-text">
+          <h2>Sou Voluntário</h2>
+          <p>Quero aplicar meus conhecimentos técnicos para apoiar projetos sociais relevantes.</p>
+        </div>
+        <button class="btn-secondary">Cadastrar Voluntário</button>
+      </div>
+
+      <div class="card card-ong" (click)="navegarParaOng()">
+        <div class="card-icon">
+          <i class="fa-solid fa-building-ngo"></i>
+        </div>
+        <div class="card-text">
+          <h2>Sou ONG</h2>
+          <p>Preciso de apoio tecnológico para ampliar o impacto da minha organização.</p>
+        </div>
+        <button class="btn-primary">Cadastrar Instituição</button>
+      </div>
     </div>
 
-    <div class="card" (click)="navegarParaOng()">
-      <h2>Sou ONG</h2>
-      <p>Quero cadastrar minha organização e encontrar apoio.</p>
-      <button>Cadastrar</button>
+    <div class="login-footer">
+      <p>Já possui uma conta? <a (click)="navegarParaLogin()">Fazer Login</a></p>
     </div>
-  </div>
-
-  <div class="login-footer">
-    <p>Já possui uma conta? <a (click)="navegarParaLogin()">Fazer Login</a></p>
-  </div>
+  </main>
 </div>

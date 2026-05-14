@@ -13,6 +13,7 @@ import { CommonModule } from '@angular/common';
 export class GestaoCandidatosComponent implements OnInit {
   @Input() projetoId!: number;
   @Output() fechar = new EventEmitter<void>();
+  @Output() statusAlterado = new EventEmitter<void>();
 
   private candidaturaService = inject(CandidaturaService);
   candidatos: CandidatoExibicao[] = [];
@@ -30,6 +31,10 @@ export class GestaoCandidatosComponent implements OnInit {
   mudarStatus(candidato: CandidatoExibicao, status: 'APROVADO' | 'RECUSADO') {
     this.candidaturaService.atualizarStatus(candidato.candidaturaId, status).subscribe(() => {
       candidato.status = status;
+
+      // EMITA O EVENTO AQUI
+      this.statusAlterado.emit();
+
       Swal.fire('Sucesso', `Voluntário ${status === 'APROVADO' ? 'Aprovado' : 'Recusado'}!`, 'success');
     });
   }

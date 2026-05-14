@@ -3,7 +3,7 @@
 
   <div class="header-right">
     <div class="notificacao-container">
-      <button class="btn-sino" (click)="toggleNotificacoes()">
+      <button class="btn-sino" (click)="toggleNotificacoes($event)">
         <i class="fa-solid fa-bell"></i>
         <span class="badge" *ngIf="contadorPendentes > 0">{{ contadorPendentes }}</span>
       </button>

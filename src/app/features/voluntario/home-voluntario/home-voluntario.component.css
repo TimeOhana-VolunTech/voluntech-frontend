@@ -90,6 +90,8 @@
   position: relative;
   flex: 3;
   min-width: 280px;
+  display: flex;
+  align-items: center;
 }
 
 .busca-wrapper i {
@@ -98,6 +100,28 @@
   top: 50%;
   transform: translateY(-50%);
   color: #2e7d32;
+}
+
+.btn-clear-search {
+  position: absolute;
+  right: 12px;
+  background: #ddd;
+  color: #666;
+  border: none;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.2s;
+}
+
+.btn-clear-search:hover {
+  background: #2e7d32;
+  color: white;
 }
 
 .input-busca-dash {
@@ -191,6 +215,16 @@
   align-items: center;
   gap: 5px;
   z-index: 1;
+}
+
+/* Estilos para o overlay na Home */
+.inscrito-overlay.pendente { background-color: #ef6c00; } /* Laranja */
+.inscrito-overlay.aprovado { background-color: #2e7d32; } /* Verde escuro */
+.inscrito-overlay.recusado { background-color: #c62828; } /* Vermelho */
+
+/* Ajuste opcional para o card recusado ficar mais "apagadinho" */
+.card.projeto-inscrito {
+  transition: opacity 0.3s ease;
 }
 
 .card-header {
@@ -300,22 +334,29 @@
 }
 
 @media (max-width: 768px) {
+  .content {
+    padding: 1rem;
+  }
+
   .welcome-section {
     flex-direction: column;
     text-align: center;
-    padding: 1.5rem;
+    gap: 1.5rem;
   }
 
   .header-actions {
-    flex-direction: column;
-    width: 80%;
-    gap: 10px;
+    width: 100%;
+    flex-direction: row; /* Mantém botões lado a lado se couberem */
+    justify-content: center;
+    flex-wrap: wrap;
   }
 
-  .btn-perfil-home {
-    width: 60%;
+  .btn-candidaturas-home, .btn-perfil-home {
+    flex: 1;
+    min-width: 160px;
+    padding: 0.6rem 1rem;
+    font-size: 0.9rem;
     justify-content: center;
-    margin-top: 1rem;
   }
 
   .welcome-text h1 {
@@ -336,6 +377,11 @@
     min-width: 140px;
   }
 
+  .btn-limpar-filtros {
+    width: 100%;
+    justify-content: center;
+  }
+
 
   .btn-limpar-filtros {
     flex: 0 0 50px;
@@ -353,5 +399,12 @@
   .status-badge {
     padding: 5px 12px;
     font-size: 0.5rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .selects-wrapper {
+    flex-direction: column; /* Selects empilhados em telas bem pequenas */
+    align-items: stretch;
   }
 }

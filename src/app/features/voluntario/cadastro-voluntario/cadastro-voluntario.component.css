@@ -65,7 +65,7 @@
 
 .form-group input:focus {
   outline: none;
-  border-color: #2563eb;
+  border-color: #2e7d32;
   box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
 }
 
@@ -116,7 +116,7 @@
 }
 
 .toggle-icon:hover {
-  color: #2563eb;
+  color: #2e7d32;
 }
 
 .password-wrapper input {
@@ -132,7 +132,7 @@
 button[type="submit"] {
   width: 100%;
   padding: 14px;
-  background-color: #2563eb;
+  background-color: #2e7d32;
   color: white;
   border: none;
   border-radius: 8px;
@@ -144,7 +144,7 @@ button[type="submit"] {
 }
 
 button[type="submit"]:hover:not(:disabled) {
-  background-color: #1d4ed8;
+  background-color: #1b5e20;
 }
 
 button[type="submit"]:disabled {

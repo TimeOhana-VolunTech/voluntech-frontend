@@ -1,8 +1,13 @@
 <div class="modal-overlay" (click)="fechar.emit()">
   <div class="modal-content" (click)="$event.stopPropagation()">
     <div class="modal-header">
-      <h2><i class="fa-solid fa-users"></i> Voluntários Interessados</h2>
-      <button class="btn-close" (click)="fechar.emit()">&times;</button>
+      <div class="header-title">
+        <i class="fa-solid fa-users-viewfinder"></i>
+        <div>
+          <h2>Voluntários Interessados</h2>
+          <p class="subtitle">Gerencie as candidaturas para este projeto</p>
+        </div>
+      </div>
     </div>
 
     <div class="modal-body">
@@ -22,7 +27,7 @@
           <div class="candidato-header">
             <div class="info-principal">
               <h3>{{ c.nome }}</h3>
-              <span class="badge-status">{{ c.status }}</span>
+              <span class="badge-status" [attr.data-status]="c.status">{{ c.status }}</span>
             </div>
             <button class="btn-whatsapp" (click)="abrirWhatsapp(c.telefone, c.nome)" title="Chamar no WhatsApp">
               <i class="fa-brands fa-whatsapp"></i> Contato
@@ -42,10 +47,10 @@
 
           <div class="candidato-actions" *ngIf="c.status === 'PENDENTE'">
             <button class="btn-recusar" (click)="mudarStatus(c, 'RECUSADO')">
-              <i class="fa-solid fa-xmark"></i> Recusar
+              <i class="fa-solid fa-user-minus"></i> Recusar
             </button>
             <button class="btn-aprovar" (click)="mudarStatus(c, 'APROVADO')">
-              <i class="fa-solid fa-check"></i> Aprovar Voluntário
+              <i class="fa-solid fa-user-check"></i> Aprovar Voluntário
             </button>
           </div>
         </div>

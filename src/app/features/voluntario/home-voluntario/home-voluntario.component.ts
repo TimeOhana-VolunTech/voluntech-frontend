@@ -33,6 +33,7 @@ export class HomeVoluntarioComponent implements OnInit {
   categoriaSelecionada: string = '';
   modalidadeSelecionada: string = '';
   idsProjetosInscritos: number[] = [];
+  candidaturasUsuario: any[] = [];
 
   ngOnInit() {
     const dados = this.authService.getUsuarioAtual();
@@ -52,13 +53,12 @@ export class HomeVoluntarioComponent implements OnInit {
     this.isCarregando = true;
     const usuario = this.authService.getUsuarioAtual();
 
-    // forkJoin executa as duas chamadas e espera ambas terminarem
     forkJoin({
       projetos: this.projetoService.explorar(this.categoriaSelecionada, this.modalidadeSelecionada, ''),
       candidaturas: this.candidaturaService.listarPorVoluntario(usuario.id)
     }).subscribe({
       next: (res) => {
-        this.idsProjetosInscritos = res.candidaturas.map(c => c.projetoId);
+        this.candidaturasUsuario = res.candidaturas; // Guarda a lista completa
         this.processarProjetos(res.projetos);
         this.isCarregando = false;
       },
@@ -81,12 +81,16 @@ export class HomeVoluntarioComponent implements OnInit {
   }
 
   processarProjetos(data: Projeto[]) {
-    this.projetos = data.map(p => ({
-      ...p,
-      // Se o ID do projeto estiver na lista de inscritos, marca como true
-      jaInscrito: this.idsProjetosInscritos.includes(p.id!)
-    })).sort((a, b) => {
-      // Ordenação: Projetos inscritos (true) vão para o final (1), não inscritos (false) ficam no início (-1)
+    this.projetos = data.map(p => {
+      // Busca a candidatura correspondente a este projeto
+      const candidatura = this.candidaturasUsuario.find(c => c.projetoId === p.id);
+
+      return {
+        ...p,
+        jaInscrito: !!candidatura,
+        statusCandidatura: candidatura ? candidatura.status : null // Agora passamos o status real!
+      };
+    }).sort((a, b) => {
       return (a.jaInscrito === b.jaInscrito) ? 0 : a.jaInscrito ? 1 : -1;
     });
   }
@@ -117,5 +121,9 @@ export class HomeVoluntarioComponent implements OnInit {
   fecharModal() {
     this.projetoSelecionado = null;
     this.carregarDadosIniciais(); // Recarrega para atualizar o card que acabou de se inscrever
+  }
+
+  limparBusca() {
+    this.filtroBusca.setValue('');
   }
 }

@@ -76,14 +76,46 @@ export class HomeOngComponent implements OnInit {
     this.router.navigate(['/editar-projeto', id]);
   }
 
+  // Helper para verificar se a data já passou (com precisão de dia)
+  isDataVencida(prazo: any): boolean {
+    if (!prazo) return true;
+    const dataPrazo = new Date(prazo);
+    dataPrazo.setHours(23, 59, 59, 999); // Considera até o último minuto do dia
+    const hoje = new Date();
+    return dataPrazo < hoje;
+  }
+
   alternarStatus(projeto: Projeto) {
+    // Se o projeto está tentando ser REATIVADO (Sair de Pausado/Finalizado para Ativo)
+    if (projeto.status !== StatusProjeto.ATIVA) {
+
+      // VERIFICAÇÃO DE PRAZO
+      if (this.isDataVencida(projeto.prazo)) {
+        Swal.fire({
+          title: 'Prazo Vencido!',
+          text: 'Não é possível ativar um projeto com o prazo de inscrição encerrado. Deseja atualizar a data agora?',
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#2e7d32',
+          confirmButtonText: 'Sim, Editar Prazo',
+          cancelButtonText: 'Agora não'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            this.irParaEditar(projeto.id!);
+          }
+        });
+        return; // Bloqueia a execução aqui
+      }
+    }
+
+    // Se passou na validação ou se for para PAUSAR, segue o fluxo normal
     const novoStatus = projeto.status === StatusProjeto.ATIVA
-    ? StatusProjeto.PAUSADA
-    : StatusProjeto.ATIVA;
+      ? StatusProjeto.PAUSADA
+      : StatusProjeto.ATIVA;
 
     this.projetoService.alterarStatus(projeto.id!, novoStatus).subscribe({
       next: () => {
-        projeto.status = novoStatus; // Atualiza na tela sem recarregar tudo
+        projeto.status = novoStatus;
         Swal.fire({
           toast: true, position: 'top-end', icon: 'success',
           title: `Projeto ${novoStatus === 'ATIVA' ? 'Reativado' : 'Pausado'}`,

@@ -104,29 +104,50 @@
 }
 
 /* Badges de Status */
+/* Badges de Status - Padronização */
 .status-badge {
-  display: inline-block;
-  padding: 4px 12px;
+  display: flex;
+  align-items: center;
+  background: #2e7d32;
+  color: white;
+  gap: 6px;
+  padding: 4px 10px;
   border-radius: 20px;
-  font-size: 0.75rem;
-  font-weight: 700;
-  text-transform: uppercase;
+  font-size: 0.7rem;
+  font-weight: bold;
   letter-spacing: 0.5px;
 }
 
+/* Cores vibrantes baseadas no status */
 .status-badge[data-status="PENDENTE"] {
-  background-color: #fef3c7;
-  color: #92400e;
+  background-color: #ef6c00;
 }
 
 .status-badge[data-status="APROVADO"] {
-  background-color: #dcfce7;
-  color: #166534;
+  background-color: #2e7d32;
 }
 
 .status-badge[data-status="RECUSADO"] {
-  background-color: #fee2e2;
-  color: #991b1b;
+  background-color: #c62828;
+}
+
+/* Estilo para a badge de encerrado (cinza) */
+.badge-projeto-encerrado {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background-color: #f1f5f9;
+  color: #64748b;
+  font-size: 0.7rem;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-weight: 800;
+  border: 1px solid #e2e8f0;
+}
+
+/* Ajuste no card para quando estiver aprovado/recusado */
+.card-candidatura {
+  border-left: 6px solid #cbd5e1; /* Borda padrão neutra */
 }
 
 /* Empty State */

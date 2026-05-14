@@ -14,13 +14,16 @@
         [class.projeto-encerrado]="c.statusProjeto === 'FINALIZADA'">
         <div class="card-info">
           <div class="badges-row">
-            <!-- Status da Inscrição (Pendente/Aprovado) -->
             <span class="status-badge" [attr.data-status]="c.status">
+              <i [class]="c.status === 'APROVADO' ? 'fa-solid fa-check-double' :
+                        c.status === 'RECUSADO' ? 'fa-solid fa-circle-xmark' :
+                        'fa-solid fa-clock'"></i>
               {{ c.status }}
             </span>
-            <!-- NOVO: Aviso se o projeto já encerrou -->
+
             <span *ngIf="c.statusProjeto === 'FINALIZADA'" class="badge-projeto-encerrado">
-              PROJETO ENCERRADO
+              <i class="fa-solid fa-hourglass-end"></i>
+              ENCERRADO
             </span>
           </div>
           <h3>{{ c.projetoTitulo }}</h3>
