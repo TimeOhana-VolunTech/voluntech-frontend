@@ -45,7 +45,7 @@ export class HomeOngComponent implements OnInit {
   carregarProjetos(id: number) {
     this.projetoService.listarPorOng(id).subscribe({
       next: (data) => this.projetos = data,
-      error: (err) => console.error('Erro ao carregar projetos', err)
+      error: (err) => console.error('Erro ao carregar vagas', err)
     });
   }
 
@@ -57,6 +57,10 @@ export class HomeOngComponent implements OnInit {
 
   irParaNovoProjeto() {
     this.router.navigate(['/novo-projeto']);
+  }
+
+  irParaPerfil() {
+    this.router.navigate(['/perfil-ong']);
   }
 
   sair() {
@@ -93,7 +97,7 @@ export class HomeOngComponent implements OnInit {
       if (this.isDataVencida(projeto.prazo)) {
         Swal.fire({
           title: 'Prazo Vencido!',
-          text: 'Não é possível ativar um projeto com o prazo de inscrição encerrado. Deseja atualizar a data agora?',
+          text: 'Não é possível ativar uma vaga com o prazo de inscrição encerrado. Deseja atualizar a data agora?',
           icon: 'warning',
           showCancelButton: true,
           confirmButtonColor: '#2e7d32',
@@ -118,7 +122,7 @@ export class HomeOngComponent implements OnInit {
         projeto.status = novoStatus;
         Swal.fire({
           toast: true, position: 'top-end', icon: 'success',
-          title: `Projeto ${novoStatus === 'ATIVA' ? 'Reativado' : 'Pausado'}`,
+          title: `Vaga ${novoStatus === 'ATIVA' ? 'Reativada' : 'Pausada'}`,
           showConfirmButton: false, timer: 2000
         });
       }
@@ -139,11 +143,11 @@ export class HomeOngComponent implements OnInit {
         this.projetoService.excluir(id).subscribe({
           next: () => {
             this.projetos = this.projetos.filter(p => p.id !== id);
-            Swal.fire('Excluído!', 'O projeto foi removido com sucesso.', 'success');
+            Swal.fire('Excluído!', 'A vaga foi removida com sucesso.', 'success');
           },
           error: (err) => {
             // Captura a mensagem que enviamos no Java (RuntimeException)
-            const mensagemErro = err.error || 'Não foi possível excluir o projeto.';
+            const mensagemErro = err.error || 'Não foi possível excluir a vaga.';
 
             Swal.fire({
               title: 'Não é possível excluir',

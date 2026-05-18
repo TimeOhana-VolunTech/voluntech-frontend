@@ -8,8 +8,6 @@ import { Projeto } from '../../../core/models/projeto.model';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { HeaderComponent } from "../../header/header.component";
 import { ProjetoDetalheComponent } from "../projeto-detalhe/projeto-detalhe.component";
-import { CandidaturaService } from '../../../core/services/candidatura.service';
-import { forkJoin } from 'rxjs';
 
 @Component({
   selector: 'app-home-voluntario',
@@ -20,7 +18,6 @@ import { forkJoin } from 'rxjs';
 })
 export class HomeVoluntarioComponent implements OnInit {
 
-  private candidaturaService = inject(CandidaturaService);
   private authService = inject(AuthService);
   private router = inject(Router);
   private projetoService = inject(ProjetoService);
@@ -32,14 +29,12 @@ export class HomeVoluntarioComponent implements OnInit {
   filtroBusca = new FormControl('');
   categoriaSelecionada: string = '';
   modalidadeSelecionada: string = '';
-  idsProjetosInscritos: number[] = [];
-  candidaturasUsuario: any[] = [];
 
   ngOnInit() {
     const dados = this.authService.getUsuarioAtual();
     this.nomeVoluntario = dados?.nome || 'Voluntário';
 
-    this.carregarDadosIniciais();
+    this.carregarProjetos();
 
     this.filtroBusca.valueChanges.pipe(
       debounceTime(400),
@@ -49,50 +44,22 @@ export class HomeVoluntarioComponent implements OnInit {
     });
   }
 
-  carregarDadosIniciais() {
-    this.isCarregando = true;
-    const usuario = this.authService.getUsuarioAtual();
-
-    forkJoin({
-      projetos: this.projetoService.explorar(this.categoriaSelecionada, this.modalidadeSelecionada, ''),
-      candidaturas: this.candidaturaService.listarPorVoluntario(usuario.id)
-    }).subscribe({
-      next: (res) => {
-        this.candidaturasUsuario = res.candidaturas; // Guarda a lista completa
-        this.processarProjetos(res.projetos);
-        this.isCarregando = false;
-      },
-      error: (err) => {
-        console.error(err);
-        this.isCarregando = false;
-      }
-    });
-  }
 
   carregarProjetos(termo: string = ''): void {
     this.isCarregando = true;
-    this.projetoService.explorar(this.categoriaSelecionada, this.modalidadeSelecionada, termo)
+    const usuario = this.authService.getUsuarioAtual();
+
+    this.projetoService.explorar(this.categoriaSelecionada, this.modalidadeSelecionada, termo, usuario?.id)
       .subscribe({
         next: (data) => {
-          this.processarProjetos(data);
+          this.projetos = data;
+          this.isCarregando = false;
+        },
+        error: (err) => {
+          console.error('Erro ao carregar oportunidades', err);
           this.isCarregando = false;
         }
       });
-  }
-
-  processarProjetos(data: Projeto[]) {
-    this.projetos = data.map(p => {
-      // Busca a candidatura correspondente a este projeto
-      const candidatura = this.candidaturasUsuario.find(c => c.projetoId === p.id);
-
-      return {
-        ...p,
-        jaInscrito: !!candidatura,
-        statusCandidatura: candidatura ? candidatura.status : null // Agora passamos o status real!
-      };
-    }).sort((a, b) => {
-      return (a.jaInscrito === b.jaInscrito) ? 0 : a.jaInscrito ? 1 : -1;
-    });
   }
 
   aplicarFiltros() {
@@ -120,7 +87,7 @@ export class HomeVoluntarioComponent implements OnInit {
 
   fecharModal() {
     this.projetoSelecionado = null;
-    this.carregarDadosIniciais(); // Recarrega para atualizar o card que acabou de se inscrever
+    this.carregarProjetos();
   }
 
   limparBusca() {

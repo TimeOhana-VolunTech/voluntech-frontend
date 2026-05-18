@@ -55,7 +55,7 @@ export class CadastroOngComponent {
       next: (ongCadastrada) => {
         Swal.fire({
           title: 'Sucesso!',
-          text: 'ONG cadastrada! Agora você pode fazer login para gerenciar seus projetos.',
+          text: 'ONG cadastrada! Agora você pode fazer login para gerenciar suas vagas.',
           icon: 'success',
           confirmButtonColor: '#2563eb',
           confirmButtonText: 'Fazer Login',

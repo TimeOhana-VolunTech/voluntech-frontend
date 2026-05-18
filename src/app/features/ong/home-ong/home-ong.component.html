@@ -7,22 +7,27 @@
         <h1>Olá, {{ nomeUsuario }}!</h1>
         <p>Gerencie suas vagas e acompanhe o impacto da sua ONG.</p>
       </div>
-      <button class="btn-novo-projeto" (click)="irParaNovoProjeto()">
-        + Nova Vaga
-      </button>
+      <div class="welcome-actions">
+        <button class="btn-novo-projeto" (click)="irParaNovoProjeto()">
+          + Nova Vaga
+        </button>
+        <button class="btn-perfil-ong" (click)="irParaPerfil()">
+           Meu Perfil
+        </button>
+      </div>
     </div>
 
     <section class="projetos-lista">
       <div class="tabs-container">
         <button [class.active]="abaAtiva === 'ativos'" (click)="setAba('ativos')">
-          Vagas Ativos
+          Vagas Ativas
         </button>
         <button [class.active]="abaAtiva === 'historico'" (click)="setAba('historico')">
-           Pausados / Finalizados
+           Pausadas / Finalizadas
         </button>
       </div>
 
-      <h2>{{ abaAtiva === 'ativos' ? 'Minhas Vagas Cadastrados' : 'Vagas Encerradas' }}</h2>
+      <h2>{{ abaAtiva === 'ativos' ? 'Vagas Cadastradas' : 'Vagas Encerradas' }}</h2>
 
       <div class="cards-grid" *ngIf="projetosFiltrados.length > 0; else emptyState">
         <div class="card"

@@ -28,24 +28,8 @@
   margin-bottom: 30px;
 }
 
-.btn-voltar {
-  position: absolute;
-  left: 0;
-  background: none;
-  border: none;
-  color: #666;
-  font-weight: 600;
-  cursor: pointer;
-  padding: 8px;
-  transition: color 0.2s;
-}
-
-.btn-voltar:hover {
-  color: #2e7d32;
-}
-
 h2 {
-  color: #333;
+  color: #22439c;
   margin: 0 auto;
   text-align: center;
   font-size: 1.8rem;
@@ -72,7 +56,7 @@ input, textarea, select {
 }
 
 input:focus, textarea:focus, select:focus {
-  border-color: #2e7d32;
+  border-color: #1d4ed8;
   outline: none;
 }
 
@@ -82,22 +66,47 @@ input:focus, textarea:focus, select:focus {
   gap: 20px;
 }
 
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
+  margin-top: 25px;
+}
+
+.btn-cancelar {
+  padding: 14px 24px;
+  background-color: transparent;
+  color: #64748b;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-cancelar:hover {
+  background-color: #f8fafc;
+  border-color: #94a3b8;
+  color: #334155;
+}
+
 .btn-submit {
-  width: 100%;
+  flex: 1;
+  max-width: 250px;
   padding: 14px;
-  background-color: #2e7d32;
+  background-color: #2563eb;
   color: white;
   border: none;
   border-radius: 6px;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: bold;
   cursor: pointer;
-  margin-top: 15px;
   transition: background 0.3s, transform 0.1s;
 }
 
 .btn-submit:hover {
-  background-color: #1b5e20;
+  background-color: #1d4ed8;
 }
 
 .btn-submit:active {
@@ -109,7 +118,11 @@ input:focus, textarea:focus, select:focus {
   cursor: not-allowed;
 }
 
-.error { color: #dc3545; font-size: 12px; margin-top: 5px; }
+.error {
+  color: #dc3545;
+  -size: 12px;
+  margin-top: 5px;
+}
 
 .form-group input.invalid, textarea.invalid, select.invalid {
   border-color: #dc2626;
@@ -134,7 +147,16 @@ input:focus, textarea:focus, select:focus {
 /* Responsividade */
 @media (max-width: 600px) {
   .row { grid-template-columns: 1fr; }
-  .form-header { flex-direction: column; gap: 15px; }
-  .btn-voltar { position: static; }
   .form-projeto { padding: 25px; }
+
+  /* Faz os botões empilharem e ocuparem toda a largura no celular */
+  .actions {
+    flex-direction: column-reverse;
+    gap: 10px;
+  }
+
+  .btn-submit, .btn-cancelar {
+    width: 100%;
+    max-width: none;
+  }
 }

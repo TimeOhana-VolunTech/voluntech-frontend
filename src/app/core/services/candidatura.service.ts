@@ -42,4 +42,8 @@ export class CandidaturaService {
 
     return this.http.patch<void>(`${this.API}/${candidaturaId}/status`, { novoStatus });
   }
+
+  cancelarCandidatura(candidaturaId: number): Observable<void> {
+    return this.http.patch<void>(`${this.API}/${candidaturaId}/cancelar`, {});
+  }
 }

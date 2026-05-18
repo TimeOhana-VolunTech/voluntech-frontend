@@ -11,16 +11,15 @@
 }
 
 .header-page {
-  display: flex;
-  align-items: center;
   gap: 20px;
   margin-bottom: 2rem;
 }
 
 .header-page h1 {
-  color: #1e293b;
+  color: #2e7d32;
   font-size: 1.8rem;
   margin: 0;
+  text-align: center;
 }
 
 .btn-voltar {
@@ -131,6 +130,16 @@
   background-color: #c62828;
 }
 
+.status-badge[data-status="CANCELADO"] {
+  background-color: #64748b; /* Cinza slate discreto */
+}
+
+.card-candidatura:has(.status-badge[data-status="CANCELADO"]) {
+  opacity: 0.75;
+  background-color: #f8fafc;
+  border-left: 6px solid #94a3b8;
+}
+
 /* Estilo para a badge de encerrado (cinza) */
 .badge-projeto-encerrado {
   display: flex;
@@ -148,6 +157,54 @@
 /* Ajuste no card para quando estiver aprovado/recusado */
 .card-candidatura {
   border-left: 6px solid #cbd5e1; /* Borda padrão neutra */
+}
+
+.card-actions {
+  margin-top: 15px;
+  padding-top: 12px;
+  border-top: 1px dashed #e2e8f0;
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* Estilo do botão Desistir */
+.btn-desistir {
+  background: none;
+  border: 1px solid #fecdd3;
+  color: #e11d48; /* Vermelho suave */
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s;
+}
+
+.btn-desistir:hover {
+  background-color: #fff1f2;
+  border-color: #fda4af;
+}
+
+.btn-reinscrever {
+  background-color: #2e7d32;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: background 0.2s;
+}
+
+.btn-reinscrever:hover {
+  background-color: #1b5e20;
 }
 
 /* Empty State */

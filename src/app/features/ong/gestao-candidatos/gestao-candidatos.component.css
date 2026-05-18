@@ -4,12 +4,12 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.7); /* Escureci um pouco para dar mais foco */
+  background: rgba(0, 0, 0, 0.7);
   display: flex;
   justify-content: center;
-  align-items: center; /* Centraliza verticalmente */
+  align-items: center;
   z-index: 1100;
-  padding: 20px; /* Margem de segurança para o modal não encostar nas bordas da tela */
+  padding: 20px;
   box-sizing: border-box;
   font-family: 'Segoe UI', Roboto, sans-serif;
 }
@@ -17,8 +17,8 @@
 .modal-content {
   background: white;
   width: 100%;
-  max-width: 600px; /* Reduzi um pouco para ficar mais elegante */
-  max-height: 85vh; /* Altura máxima de 85% da tela */
+  max-width: 600px;
+  max-height: 85vh;
   border-radius: 15px;
   display: flex;
   flex-direction: column;
@@ -53,8 +53,8 @@
 
 .header-title i {
   font-size: 1.8rem;
-  color: #2e7d32;
-  background: #e8f5e9;
+  color: #1d4ed8;
+  background: #e8edf5;
   padding: 10px;
   border-radius: 12px;
 }
@@ -64,9 +64,9 @@
 
 /* Estilo para o alerta de liberação de exclusão */
 .alert-exclusao {
-  background-color: #f0fdf4; /* Verde bem claro */
+  background-color: #f0fdf4;
   border: 1px solid #bbf7d0;
-  color: #166534;
+  color: #26428f;
   padding: 1rem;
   border-radius: 10px;
   margin-bottom: 1.5rem;
@@ -78,7 +78,7 @@
 
 .alert-exclusao i {
   font-size: 1.5rem;
-  color: #22c55e;
+  color: #1d4ed8;
 }
 
 
@@ -162,7 +162,7 @@
 
 .btn-aprovar {
   flex: 2;
-  background: #2e7d32;
+  background: #2563eb;
   color: white;
   border: none;
   padding: 12px;
@@ -176,7 +176,9 @@
   gap: 8px;
 }
 
-.btn-aprovar:hover { background: #1b5e20; }
+.btn-aprovar:hover {
+  background: #1d4ed8;
+}
 
 .btn-recusar {
   flex: 1;
@@ -221,17 +223,15 @@
   opacity: 0.5;
 }
 
-/* --- Ajustes de Responsividade --- */
-
-/* Responsividade Mobile */
+/* Responsividade  */
 @media (max-width: 600px) {
   .modal-overlay {
-    padding: 15px; /* Menos margem em telas pequenas */
+    padding: 15px; /
   }
 
   .modal-content {
-    max-height: 90vh; /* Ganha um pouco mais de espaço no mobile */
-    border-radius: 15px; /* Mantém as bordas arredondadas em todos os lados */
+    max-height: 90vh;
+    border-radius: 15px;
   }
 
   .header-title h2 {
@@ -242,7 +242,6 @@
     font-size: 0.75rem;
   }
 
-  /* Garante que os cards de candidatos também fiquem bem dispostos */
   .candidato-actions {
     flex-direction: column;
     gap: 8px;
