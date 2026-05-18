@@ -53,7 +53,7 @@ export class GestaoCandidatosComponent implements OnInit {
       numeroLimpo = '55' + numeroLimpo;
     }
 
-    const mensagem = encodeURIComponent(`Olá ${nome}, vimos seu interesse no projeto através da plataforma Voluntech!`);
+    const mensagem = encodeURIComponent(`Olá ${nome}, vimos seu interesse na vaga através da plataforma Voluntech!`);
     const link = `https://api.whatsapp.com/send?phone=${numeroLimpo}&text=${mensagem}`;
 
     window.open(link, '_blank');

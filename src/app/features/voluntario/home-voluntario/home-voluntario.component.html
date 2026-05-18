@@ -5,17 +5,15 @@
     <div class="welcome-section">
       <div class="welcome-text">
         <h1>Olá, {{ nomeVoluntario }}!</h1>
-        <p>Explore novas oportunidades e encontre o projeto ideal para você.</p>
+        <p>Explore novas oportunidades e encontre a vaga do projeto ideal para você.</p>
       </div>
 
       <div class="header-actions">
         <button class="btn-candidaturas-home" (click)="irParaCandidaturas()">
-          <i class="fa-solid fa-handshake-angle"></i>
           Minhas Inscrições
         </button>
 
         <button class="btn-perfil-home" (click)="irParaPerfil()">
-          <i class="fa-solid fa-user-gear"></i>
           Meu Perfil
         </button>
       </div>
@@ -105,7 +103,7 @@
       <ng-template #emptyState>
         <div class="empty-msg">
           <p *ngIf="isCarregando">Buscando oportunidades...</p>
-          <p *ngIf="!isCarregando">Nenhum projeto encontrado com esses filtros. Tente outra busca!</p>
+          <p *ngIf="!isCarregando">Nenhuma vaga encontrado com esses filtros. Tente outra busca!</p>
         </div>
       </ng-template>
     </section>

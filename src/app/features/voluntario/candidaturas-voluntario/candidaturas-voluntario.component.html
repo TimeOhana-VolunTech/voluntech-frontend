@@ -4,7 +4,7 @@
   <main class="content">
     <div class="header-page">
       <button class="btn-voltar" (click)="voltar()">
-        <i class="fa-solid fa-arrow-left"></i> Voltar
+        <i class="fa-solid fa-arrow-left"></i>
       </button>
       <h1>Minhas Inscrições</h1>
     </div>
@@ -17,6 +17,7 @@
             <span class="status-badge" [attr.data-status]="c.status">
               <i [class]="c.status === 'APROVADO' ? 'fa-solid fa-check-double' :
                         c.status === 'RECUSADO' ? 'fa-solid fa-circle-xmark' :
+                        c.status === 'CANCELADO' ? 'fa-solid fa-user-slash' :
                         'fa-solid fa-clock'"></i>
               {{ c.status }}
             </span>
@@ -29,6 +30,19 @@
           <h3>{{ c.projetoTitulo }}</h3>
           <p class="ong-nome"><i class="fa-solid fa-building-ngo"></i> {{ c.nomeOng }}</p>
           <p class="data"><i class="fa-regular fa-calendar"></i> Inscrito em: {{ c.dataCandidatura | date:'dd/MM/yyyy' }}</p>
+
+          <div class="card-actions" *ngIf="c.status === 'PENDENTE' && c.statusProjeto !== 'FINALIZADA'">
+            <button class="btn-desistir" (click)="desistirDaInscricao($event, c)">
+              <i class="fa-solid fa-ban"></i> Desistir da Inscrição
+            </button>
+          </div>
+
+          <div class="card-actions" *ngIf="c.status === 'CANCELADO' && c.statusProjeto !== 'FINALIZADA'">
+            <button class="btn-reinscrever" (click)="reinscreverNoProjeto($event, c)">
+              <i class="fa-solid fa-rotate-left"></i> Quero me inscrever novamente
+            </button>
+          </div>
+
         </div>
       </div>
     </div>
@@ -36,7 +50,7 @@
     <ng-template #emptyState>
       <div class="empty-msg">
         <i class="fa-solid fa-folder-open"></i>
-        <p>Você ainda não se candidatou a nenhum projeto.</p>
+        <p>Você ainda não se candidatou a nenhuma vaga.</p>
         <button (click)="voltar()" class="btn-explorar">Explorar Oportunidades</button>
       </div>
     </ng-template>

@@ -5,7 +5,7 @@
         <i class="fa-solid fa-users-viewfinder"></i>
         <div>
           <h2>Voluntários Interessados</h2>
-          <p class="subtitle">Gerencie as candidaturas para este projeto</p>
+          <p class="subtitle">Gerencie as candidaturas para esta vaga</p>
         </div>
       </div>
     </div>
@@ -13,12 +13,12 @@
     <div class="modal-body">
       <div class="alert-exclusao" *ngIf="candidatos.length > 0 && todosRecusados()">
         <i class="fa-solid fa-circle-check"></i>
-        <p>Todos os voluntários foram recusados. Agora você pode <strong>excluir este projeto</strong> permanentemente na tela inicial.</p>
+        <p>Todos os voluntários foram recusados. Agora você pode <strong>excluir esta vaga</strong> permanentemente na tela inicial.</p>
       </div>
 
       <div *ngIf="candidatos.length === 0" class="empty-state">
         <i class="fa-solid fa-user-slash"></i>
-        <p>Ainda não há inscritos para este projeto.</p>
+        <p>Ainda não há inscritos para esta vaga.</p>
       </div>
 
       <div class="candidatos-list" *ngIf="candidatos.length > 0">

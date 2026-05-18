@@ -44,12 +44,12 @@ export class ProjetoModalComponent {
   alternarStatus() {
     if (!this.projeto) return;
 
-    // Se o usuário está tentando ATIVAR o projeto
+    // Se o usuário está tentando ATIVAR a vaga
     if (this.projeto.status !== StatusProjeto.ATIVA) {
       if (this.isPrazoVencido(this.projeto.prazo)) {
         Swal.fire({
           title: 'Prazo Encerrado',
-          text: 'Não é possível ativar um projeto com o prazo vencido. Atualize a data de inscrição primeiro.',
+          text: 'Não é possível ativar uma vaga com o prazo vencido. Atualize a data de inscrição primeiro.',
           icon: 'warning',
           showCancelButton: true,
           confirmButtonColor: '#2e7d32',
@@ -73,7 +73,7 @@ export class ProjetoModalComponent {
         this.atualizou.emit();
         Swal.fire({
           toast: true, position: 'top-end', icon: 'success',
-          title: `Projeto ${novoStatus === StatusProjeto.ATIVA ? 'Reativado' : 'Pausado'}`,
+          title: `Vaga ${novoStatus === StatusProjeto.ATIVA ? 'Reativado' : 'Pausado'}`,
           showConfirmButton: false, timer: 2000
         });
       }
@@ -84,7 +84,7 @@ export class ProjetoModalComponent {
     if (!this.projeto?.id) return;
 
     Swal.fire({
-      title: 'Excluir Projeto?',
+      title: 'Excluir Vaga?',
       text: "Esta ação não pode ser revertida!",
       icon: 'warning',
       showCancelButton: true,
@@ -96,7 +96,7 @@ export class ProjetoModalComponent {
           next: () => {
             this.atualizou.emit();
             this.fechar();
-            Swal.fire('Deletado!', 'O projeto foi removido.', 'success');
+            Swal.fire('Deletado!', 'A vaga foi removido.', 'success');
           }
         });
       }

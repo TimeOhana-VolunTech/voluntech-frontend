@@ -64,7 +64,7 @@ export class ProjetoFormComponent implements OnInit {
     if (dataSelecionada < hoje) {
       Swal.fire({
         title: 'Data Inválida!',
-        text: 'O prazo limite do projeto não pode ser uma data retroativa.',
+        text: 'O prazo limite da vaga não pode ser uma data retroativa.',
         icon: 'error',
         confirmButtonColor: '#2e7d32',
         confirmButtonText: 'Entendido'
@@ -88,7 +88,7 @@ export class ProjetoFormComponent implements OnInit {
       next: (res) => {
         Swal.fire({
           title: 'Sucesso!',
-          text: this.isEdicao ? 'Oportunidade atualizada com sucesso.' : 'Projeto publicado com sucesso.',
+          text: this.isEdicao ? 'Vaga atualizada com sucesso.' : 'Vaga publicada com sucesso.',
           icon: 'success',
           confirmButtonColor: '#2e7d32'
         }).then((result) => {
@@ -98,7 +98,7 @@ export class ProjetoFormComponent implements OnInit {
         });
       },
       error: (err) => {
-        Swal.fire('Erro!', `Não foi possível ${this.isEdicao ? 'atualizar' : 'cadastrar'} o projeto.`, 'error');
+        Swal.fire('Erro!', `Não foi possível ${this.isEdicao ? 'atualizar' : 'cadastrar'} a vaga.`, 'error');
       }
     });
   }
@@ -110,7 +110,7 @@ export class ProjetoFormComponent implements OnInit {
       this.projetoId = +id;
       this.projetoService.buscarPorId(this.projetoId).subscribe({
         next: (projeto) => this.projetoForm.patchValue(projeto),
-        error: () => Swal.fire('Erro', 'Não foi possível carregar o projeto.', 'error')
+        error: () => Swal.fire('Erro', 'Não foi possível carregar a vaga.', 'error')
       });
     }
   }

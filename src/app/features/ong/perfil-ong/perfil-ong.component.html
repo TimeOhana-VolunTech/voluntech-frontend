@@ -1,0 +1,60 @@
+<div class="perfil-container">
+
+  <app-header></app-header>
+
+  <div class="perfil-card" *ngIf="!isCarregando">
+    <div class="perfil-header">
+      <h2>Meu Perfil</h2>
+      <p>Gerencie suas informações</p>
+    </div>
+
+    <form [formGroup]="perfilForm" (ngSubmit)="salvarPerfil()" class="form-perfil">
+
+      <div class="form-group">
+        <label for="nome">Nome da ONG</label>
+        <input id="nome" type="text" formControlName="nome" placeholder="Ex: Adote um Amigo"
+               [ngClass]="{'input-error': perfilForm.get('nome')?.touched && perfilForm.get('nome')?.invalid}">
+        <span class="error-msg" *ngIf="perfilForm.get('nome')?.touched && perfilForm.get('nome')?.invalid">
+          O nome deve conter pelo menos 3 caracteres.
+        </span>
+      </div>
+
+      <div class="form-group">
+        <label for="razaoSocial">Razão Social</label>
+        <input id="razaoSocial" type="text" formControlName="razaoSocial" placeholder="Razão Social completa">
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="cnpj">CNPJ</label>
+          <input id="cnpj" type="text" formControlName="cnpj">
+          <small class="help-text">Para alterar o CNPJ, entre em contato com o suporte.</small>
+        </div>
+
+        <div class="form-group">
+          <label for="email">E-mail</label>
+          <input id="email" type="email" formControlName="email" placeholder="contato@ong.org"
+                 [ngClass]="{'input-error': perfilForm.get('email')?.touched && perfilForm.get('email')?.invalid}">
+          <span class="error-msg" *ngIf="perfilForm.get('email')?.touched && perfilForm.get('email')?.invalid">
+            Insira um e-mail válido.
+          </span>
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <button type="button" class="btn-cancelar" (click)="voltar()">
+          Cancelar
+        </button>
+        <button type="submit" class="btn-salvar" [disabled]="perfilForm.invalid || isSalvando">
+          {{ isSalvando ? 'Salvando...' : 'Salvar Alterações' }}
+        </button>
+      </div>
+
+    </form>
+  </div>
+
+  <div class="loader-container" *ngIf="isCarregando">
+    <div class="spinner"></div>
+    <p>Carregando informações da instituição...</p>
+  </div>
+</div>

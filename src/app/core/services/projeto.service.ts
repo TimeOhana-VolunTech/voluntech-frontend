@@ -44,12 +44,13 @@ export class ProjetoService {
     return this.http.delete<void>(`${this.API}/${id}`);
   }
 
-  explorar(categoria?: string, modalidade?: string, termo?: string): Observable<Projeto[]> {
+  explorar(categoria?: string, modalidade?: string, termo?: string, voluntarioId?: number): Observable<Projeto[]> {
     let params = new HttpParams();
 
     if (categoria) params = params.set('categoria', categoria);
     if (modalidade) params = params.set('modalidade', modalidade);
     if (termo) params = params.set('termo', termo);
+    if (voluntarioId) params = params.set('voluntarioId', voluntarioId.toString());
 
     return this.http.get<Projeto[]>(`${this.API}/explorar`, { params });
   }

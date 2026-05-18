@@ -4,7 +4,6 @@
   <div class="container">
     <form [formGroup]="projetoForm" (ngSubmit)="salvarProjeto()" class="form-projeto">
       <div class="form-header">
-        <button type="button" class="btn-voltar" routerLink="/home-ong">← Voltar</button>
         <h2>{{ isEdicao ? 'Editar Vaga' : 'Criar Nova Vaga' }}</h2>
       </div>
 
@@ -69,6 +68,7 @@
       </div>
 
       <div class="actions">
+        <button type="button" class="btn-cancelar" routerLink="/home-ong">Cancelar</button>
         <button type="submit" class="btn-submit">{{ isEdicao ? 'Atualizar Vaga' : 'Publicar Vaga' }}</button>
       </div>
     </form>

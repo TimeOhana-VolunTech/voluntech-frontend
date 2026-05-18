@@ -4,7 +4,7 @@
 
     <div class="modal-body" *ngIf="projeto">
       <div class="projeto-header-img">
-        <img [src]="getImagemProjeto()" alt="Capa do projeto">
+        <img [src]="getImagemProjeto()" alt="Capa da vaga">
       </div>
 
       <div class="projeto-info">
@@ -40,7 +40,7 @@
           <ng-container *ngIf="projeto.status === 'FINALIZADA'">
             <div class="status-banner encerrado">
               <i class="fa-solid fa-hourglass-end"></i>
-              <span>Inscrições encerradas. Este projeto atingiu o prazo limite.</span>
+              <span>Inscrições encerradas. Esta vaga atingiu o prazo limite de inscrições.</span>
             </div>
           </ng-container>
 
@@ -57,11 +57,13 @@
               <div [class]="'status-banner ' + (projeto.statusCandidatura?.toLowerCase() || 'pendente')">
                 <i [class]="projeto.statusCandidatura === 'APROVADO' ? 'fa-solid fa-circle-check' :
                           projeto.statusCandidatura === 'RECUSADO' ? 'fa-solid fa-circle-xmark' :
+                          projeto.statusCandidatura === 'CANCELADO' ? 'fa-solid fa-circle-xmark' :
                           'fa-solid fa-clock'"></i>
 
                 <span>
-                  {{ projeto.statusCandidatura === 'APROVADO' ? 'Parabéns! Você foi selecionado para este projeto.' :
+                  {{ projeto.statusCandidatura === 'APROVADO' ? 'Parabéns! Você foi selecionado para esta vaga.' :
                     projeto.statusCandidatura === 'RECUSADO' ? 'Infelizmente você não foi selecionado desta vez.' :
+                    projeto.statusCandidatura === 'CANCELADO' ? 'Você cancelou sua inscrição na vaga.' :
                     'Sua candidatura está em análise pela ONG.' }}
                 </span>
               </div>

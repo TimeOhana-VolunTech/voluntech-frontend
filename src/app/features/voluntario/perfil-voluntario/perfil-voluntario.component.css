@@ -17,7 +17,8 @@
 }
 
 .perfil-header {
-  margin-bottom: 1.5rem;
+  text-align: center;
+  margin-bottom: 35px;
   border-bottom: 2px solid #f0f0f0;
   padding-bottom: 1rem;
 }
@@ -155,7 +156,7 @@ textarea.ng-invalid.ng-touched {
 
 .btn-save {
   padding: 0.8rem 2.5rem;
-  background-color: #10b981;
+  background-color: #2e7d32;
   color: white;
   border: none;
   border-radius: 8px;
@@ -166,7 +167,7 @@ textarea.ng-invalid.ng-touched {
 }
 
 .btn-save:hover {
-  background-color: #059669;
+  background-color: #1c4b1f;
   transform: translateY(-2px);
 }
 

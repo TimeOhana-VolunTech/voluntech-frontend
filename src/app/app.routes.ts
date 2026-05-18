@@ -10,6 +10,7 @@ import { ProjetoFormComponent } from './features/ong/projeto-form/projeto-form.c
 import { OnboardingVoluntarioComponent } from './features/voluntario/onboarding-voluntario/onboarding-voluntario.component';
 import { PerfilVoluntarioComponent } from './features/voluntario/perfil-voluntario/perfil-voluntario.component';
 import { CandidaturasVoluntarioComponent } from './features/voluntario/candidaturas-voluntario/candidaturas-voluntario.component';
+import { PerfilOngComponent } from './features/ong/perfil-ong/perfil-ong.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -17,6 +18,7 @@ export const routes: Routes = [
 
   { path: 'cadastro-ong', component: CadastroOngComponent },
   { path: 'cadastro-voluntario', component: CadastroVoluntarioComponent },
+
   { path: 'onboarding-voluntario', component: OnboardingVoluntarioComponent, canActivate: [authGuard] },
   { path: 'perfil-voluntario', component: PerfilVoluntarioComponent, canActivate: [authGuard] },
   { path: 'candidatura-voluntario', component: CandidaturasVoluntarioComponent, canActivate: [authGuard] },
@@ -24,6 +26,7 @@ export const routes: Routes = [
   { path: 'home-ong', component: HomeOngComponent, canActivate: [authGuard] },
   { path: 'novo-projeto', component: ProjetoFormComponent, canActivate: [authGuard] },
   { path: 'editar-projeto/:id', component: ProjetoFormComponent, canActivate: [authGuard] },
+  { path: 'perfil-ong', component: PerfilOngComponent, canActivate: [authGuard] },
 
   { path: 'home-voluntario', component: HomeVoluntarioComponent, canActivate: [authGuard] },
 
